@@ -360,7 +360,10 @@ shipped file, which is SOF0 from PIL):
 
 ## Push record (filled after push)
 
-- Commit A (fix): <sha> — NEWS.md, entry.png, main.ts, gate-run.md.
-- Commit B (record): <sha> — gate-run.md push verification (if needed).
-- Remote tree verified blob-for-blob; About verified (homepage
-  https://make.fun/bounty/news-image-20261122, topic makefun).
+- Commit A (fix): 01ac4ccb9bf5954fe07471fdb9545757be841c10 — NEWS.md,
+  entry.png, main.ts, gate-run.md. Parent 400c6ee76df087a183f83ebcb9fa9f34ce5e4f78.
+- Remote tree b7317d2ec7293ee4bf194fc821e13504087444b6 verified
+  blob-for-blob (7/7 files match local sha1s, no extras); About verified
+  (public, homepage https://make.fun/bounty/news-image-20261122, topic
+  makefun, created 2026-11-22T01:29:27Z).
+- Commit B (record): <this commit> — gate-run.md push verification.
