@@ -420,5 +420,24 @@ Repo pushed + verified (see Push record below).
 
 ## Push record (filled after push)
 
-- (to be filled: new HEAD commit sha, PAT call results, remote tree
-  verification, About verification, kit check re-run on full tree)
+- Commit A (r3, 4 PUTs, all status 200 first attempt, no retries):
+  entry.png 01fa6601167850bb5c2206184c023940535645a7 ("The Day the
+  Deal Died (37 stories)") → main.ts
+  d03e62d171585e71c5c6c44f39f2ad76864062d9 → NEWS.md
+  04a3641f572d5fb984bb83d20504f92bbc3657fd → gate-run.md
+  8b45a4b3fc0c2f744092783dc430b8d91db01c11 (HEAD after A). Parent
+  3fe983d54dff36126894b8d6b2cca1c87c3a7c3f (r2 HEAD).
+- Remote tree verified blob-for-blob (7/7 files; the 4 pushed blobs
+  match local `git hash-object` exactly; LICENSE/README/package.json
+  unchanged, same shas as before the push). About verified: public,
+  homepage https://make.fun/bounty/news-image-20261122, topics
+  makefun, ai-agents, bounties, growth, created 2026-11-22T01:29:27Z
+  (after 2026-11-22T00:00Z). Repo description updated via PAT PATCH
+  (status 200) to the r3 edition (37 stories, COP31 collapse) —
+  r2's "24 verified stories" text was stale for r3.
+- No RemoteDisconnected or retry occurred on this push; all 5 PAT
+  calls (4 PUTs + 1 PATCH) returned 200 on first attempt.
+- Kit check re-run on the full tree (clone at 3fe983d5 + 4 r3 files
+  overlaid, 13:20 UTC): 4 passed / 1 failed (transcripts_present,
+  expected) / 14 skipped / 5 at-submission.
+- Commit B (record): <this commit> — gate-run.md push verification.
