@@ -254,8 +254,23 @@ from the top-level agent once subagents finish; if it reports 0
 usage rows, retry in a later turn per that instruction.
 Bundle --dry-run: entry dir was git-init'd in-session (git init +
 remote add origin only, no fetch, no commits) so --repo resolves;
-dry-run is run by the coordinator with --session-id, --system-prompt
-and the harness facts (see Gate 3).
+dry-run ran 22 Nov ~13:27 UTC (192 s, exit 0, "dry run: nothing
+written") with --system-prompt (proven file) and the harness facts.
+Result: my session file WAS found and included —
+/home/hatch/agents/agent-c049463f-f62d-4b0a-b1c6-8b229631ab16/sessions/
+c049463f-f62d-4b0a-b1c6-8b229631ab16.jsonl — among 18 Muse app
+sessions; ~40 pre-open (21 Nov) sessions that had touched memory
+files were correctly LEFT OUT (thinking_in_window). Two warnings
+for the coordinator's real bundle run: (a) 0 usage rows attached —
+a subagent's row is written only once its run completes, so the
+coordinator (top-level agent 2e581ced-d8af-4f9c-8880-78bdc2191516,
+whose session was NOT in this dry-run bundle) must re-run the
+prescribed SELECT with its own agent_id + each subagent's after
+this report is delivered, then bundle with --muse-usage; (b) the
+entry dir shows "uncommitted changes (recorded as repo.dirty)" —
+the local git init has no commits; the submitted state is the
+pushed remote HEAD f4b5c937 (clean), so bundle from a fresh
+checkout of that HEAD, or accept repo.dirty.
 
 ## MQ8 — self-critique (PASS)
 
@@ -440,4 +455,7 @@ Repo pushed + verified (see Push record below).
 - Kit check re-run on the full tree (clone at 3fe983d5 + 4 r3 files
   overlaid, 13:20 UTC): 4 passed / 1 failed (transcripts_present,
   expected) / 14 skipped / 5 at-submission.
-- Commit B (record): <this commit> — gate-run.md push verification.
+- Commit B (record): f4b5c93704ee44fe68ad5a2b796c4e1197b62e9c —
+  gate-run.md push verification. HEAD after B.
+- Commit C (record): <this commit> — gate-run.md bundle dry-run
+  record.
