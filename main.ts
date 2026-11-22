@@ -1,152 +1,128 @@
-// main.ts — news-image-20261122 entry program (Node 22, stdlib only).
+// main.ts — news-image-20261122 round 2 (results edition).
 //
-// The entry image is the file entry.png shipped at the repository root
-// (JPEG bytes under that name, which the rules allow: the file is told
-// apart by its first bytes). This program validates it and copies it,
-// byte for byte, to $MAKEFUN_OUTPUT_DIR/entry.png (or $OUTPUT_DIR, or
-// /output). No network, no writes into the repository, no randomness:
-// two runs write identical bytes.
+// Node 22, standard library only, no network. Validates the shipped
+// entry.png (JPEG bytes, 1024x1024, at most 1 MiB, whole file through
+// to its end marker) and copies it byte for byte to
+// $MAKEFUN_OUTPUT_DIR/entry.png (fallback $OUTPUT_DIR, then /output).
+// Two runs write identical bytes.
 
-import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const MAX_BYTES = 1_048_576;
+const MAX_BYTES = 1048576; // 1 MiB
 const EXPECTED_WIDTH = 1024;
 const EXPECTED_HEIGHT = 1024;
 
 function fail(message: string): never {
-  console.error("entry: " + message);
+  console.error(`main.ts: ${message}`);
   process.exit(1);
 }
 
-function outputDir(): string {
-  const dir =
-    process.env.MAKEFUN_OUTPUT_DIR ||
-    process.env.OUTPUT_DIR ||
-    "/output";
-  return resolve(dir);
+// Count raw occurrences of a two-byte sequence in the whole buffer.
+// JPEG entropy data stuffs 0xFF as 0xFF00, so a raw 0xFFD8 / 0xFFD9
+// byte pair can only be a real marker, never image data.
+function countSequence(buf: Buffer, a: number, b: number): number {
+  let n = 0;
+  for (let i = 0; i + 1 < buf.length; i++) {
+    if (buf[i] === a && buf[i + 1] === b) n++;
+  }
+  return n;
 }
 
-function readJpegDimensions(buf: Buffer): { width: number; height: number } {
-  // JPEG markers: SOI (FFD8), then segments. SOF markers (FFC0-FFCF
-  // except FFC4 DHT, FFC8 JPG, FFCC DAC) carry height then width as
-  // big-endian uint16 at offset 3..7. Our shipped file is SOF0, but
-  // accept every SOF marker so a valid JPEG in another frame mode
-  // is not wrongly rejected.
-  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) {
-    fail("entry.png is not a JPEG (missing SOI marker FFD8)");
-  }
-  let pos = 2;
-  while (pos + 2 <= buf.length) {
+// Walk the JPEG marker segments from the SOI and return the frame size
+// from the first SOF marker. Bounds-check every read.
+function frameSize(buf: Buffer): { width: number; height: number } {
+  let pos = 2; // past the SOI
+  while (pos + 1 < buf.length) {
     if (buf[pos] !== 0xff) {
-      fail("entry.png: corrupt JPEG marker at offset " + pos);
+      fail(`expected marker prefix 0xFF at offset ${pos}`);
     }
-    // Skip 0xFF fill bytes: any number may precede a marker code.
-    while (pos + 1 < buf.length && buf[pos + 1] === 0xff) {
-      pos++;
+    // Skip 0xFF fill bytes; the marker code is the first non-0xFF byte.
+    let codePos = pos + 1;
+    while (codePos < buf.length && buf[codePos] === 0xff) codePos++;
+    if (codePos >= buf.length) fail("truncated marker at end of file");
+    const code = buf[codePos];
+    if (code === 0xd8) fail("second SOI marker");
+    if (code === 0xd9) {
+      // The pre-checks guarantee the file ends with exactly one EOI,
+      // so reaching it here means no SOF marker came before it.
+      fail("no SOF marker found (reached EOI)");
     }
-    if (pos + 1 >= buf.length) {
-      fail("entry.png: truncated JPEG marker at offset " + pos);
-    }
-    const marker = buf[pos + 1];
-    if (marker === 0xd9) {
-      // EOI is only valid as the final two bytes of the file; an
-      // early EOI means the file is truncated or has trailing junk.
-      if (pos + 2 === buf.length) {
-        break;
-      }
-      fail("entry.png: EOI marker before end of file");
-    }
-    if (marker === 0xd8) {
-      fail("entry.png: unexpected second SOI marker at offset " + pos);
-    }
-    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
-      pos += 2; // standalone marker, no length field
+    if (code === 0x01 || (code >= 0xd0 && code <= 0xd7)) {
+      // Standalone markers (TEM, RST0-RST7): no length field.
+      pos = codePos + 1;
       continue;
     }
-    if (pos + 4 > buf.length) {
-      fail("entry.png: truncated JPEG segment at offset " + pos);
+    if (codePos + 3 > buf.length) fail("truncated segment length");
+    const segLen = buf.readUInt16BE(codePos + 1);
+    if (segLen < 2) fail(`segment length ${segLen} too small`);
+    if (codePos + 1 + segLen > buf.length) {
+      fail("segment overruns end of file");
     }
-    const len = buf.readUInt16BE(pos + 2);
-    if (len < 2 || pos + 2 + len > buf.length) {
-      fail("entry.png: corrupt JPEG segment at offset " + pos);
+    const isSos = code === 0xda;
+    if (isSos) {
+      // Start-of-scan: entropy-coded data follows, and no SOF marker
+      // can appear after it. Stop the walk instead of misreading
+      // scan data as markers.
+      fail("no SOF marker found before scan data");
     }
-    if (marker >= 0xc0 && marker <= 0xcf &&
-        marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
-      // A SOF segment needs at least precision + height + width
-      // (len >= 8) before the component list; shorter is corrupt.
-      if (len < 8) {
-        fail("entry.png: corrupt SOF segment at offset " + pos);
-      }
-      const height = buf.readUInt16BE(pos + 5);
-      const width = buf.readUInt16BE(pos + 7);
+    const isSof =
+      code >= 0xc0 &&
+      code <= 0xcf &&
+      code !== 0xc4 && // DHT
+      code !== 0xc8 && // JPG
+      code !== 0xcc; // DAC
+    if (isSof) {
+      if (segLen < 8) fail("SOF segment too short");
+      const height = buf.readUInt16BE(codePos + 4);
+      const width = buf.readUInt16BE(codePos + 6);
       return { width, height };
     }
-    pos += 2 + len;
+    pos = codePos + 1 + segLen;
   }
-  fail("entry.png: no JPEG frame header (SOF) found");
+  fail("no SOF marker found");
 }
 
 function main(): void {
   const here = dirname(fileURLToPath(import.meta.url));
-  const source = join(here, "entry.png");
-  let stat;
+  const src = join(here, "entry.png");
+  let buf: Buffer;
   try {
-    stat = statSync(source);
+    buf = readFileSync(src);
   } catch {
-    fail("entry.png not found next to main.ts");
+    fail(`cannot read ${src}`);
   }
-  if (!stat.isFile()) {
-    fail("entry.png is not a regular file");
+  if (buf.length === 0) fail("entry.png is empty");
+  if (buf.length > MAX_BYTES) {
+    fail(`entry.png is ${buf.length} bytes, over the 1 MiB cap`);
   }
-  if (stat.size > MAX_BYTES) {
-    fail("entry.png is " + stat.size + " bytes, over the 1 MiB limit");
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) {
+    fail("entry.png does not start with JPEG SOI (FFD8)");
   }
-  const buf = readFileSync(source);
-  if (buf.length < 2 || buf[buf.length - 2] !== 0xff ||
-      buf[buf.length - 1] !== 0xd9) {
-    fail("entry.png is not a whole JPEG (missing EOI marker FFD9)");
+  if (buf[buf.length - 2] !== 0xff || buf[buf.length - 1] !== 0xd9) {
+    fail("entry.png does not end with JPEG EOI (FFD9)");
   }
-  const { width, height } = readJpegDimensions(buf);
+  if (countSequence(buf, 0xff, 0xd8) !== 1) {
+    fail("entry.png must contain exactly one SOI marker");
+  }
+  if (countSequence(buf, 0xff, 0xd9) !== 1) {
+    fail("entry.png must contain exactly one EOI marker");
+  }
+  const { width, height } = frameSize(buf);
   if (width !== EXPECTED_WIDTH || height !== EXPECTED_HEIGHT) {
     fail(
-      "entry.png is " + width + "x" + height +
-      ", expected 1024x1024",
+      `entry.png is ${width}x${height}, expected ` +
+        `${EXPECTED_WIDTH}x${EXPECTED_HEIGHT}`,
     );
   }
-  // Whole-file marker check: exactly one SOI (at offset 0) and one EOI
-  // (at the end). The frame parser returns at the SOF header, so an
-  // early EOI or a second SOI hidden after it would otherwise go
-  // unseen. In valid entropy data every 0xFF is stuffed as 0xFF00,
-  // so a raw FFD8/FFD9 can only be a real marker; this file has
-  // exactly one of each.
-  let soiCount = 0;
-  let eoiCount = 0;
-  for (let i = 0; i + 1 < buf.length; i++) {
-    if (buf[i] === 0xff && buf[i + 1] === 0xd8) {
-      soiCount++;
-    }
-    if (buf[i] === 0xff && buf[i + 1] === 0xd9) {
-      eoiCount++;
-    }
-  }
-  if (soiCount !== 1) {
-    fail("entry.png has " + soiCount + " SOI markers, expected 1");
-  }
-  if (eoiCount !== 1) {
-    fail("entry.png has " + eoiCount + " EOI markers, expected 1");
-  }
-  const outDir = outputDir();
+  const outDir =
+    process.env.MAKEFUN_OUTPUT_DIR || process.env.OUTPUT_DIR || "/output";
   mkdirSync(outDir, { recursive: true });
   const dest = join(outDir, "entry.png");
-  // Write the validated buffer itself, not a second read of the file:
-  // a file mutated between validation and copy would otherwise ship
-  // unvalidated bytes.
   writeFileSync(dest, buf);
   console.log(
-    "entry: wrote " + dest + " (" + buf.length + " bytes, " +
-    width + "x" + height + " JPEG)",
+    `wrote ${dest} (${buf.length} bytes, ${width}x${height} JPEG)`,
   );
 }
 

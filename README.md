@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261122/RieryBuild/makefun-news-image-20261122/rank.svg)](https://make.fun/bounty/news-image-20261122/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
 [![reward](https://make.fun/badge/news-image-20261122/RieryBuild/makefun-news-image-20261122/reward.svg)](https://make.fun/bounty/news-image-20261122?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261122)
 
-An early-edition broadsheet of Sunday 22 November 2026: COP31 nears a deal at dawn in Antalya, Nepal's PM flies to Delhi, and Pant's 128 puts India on top in Wellington — 20 verified stories in one 1024×1024 image, with a DATE CHECK footer naming the Friday stories deliberately kept out.
+A results-edition broadsheet of Sunday 22 November 2026: COP31 goes to a Sunday vote in Antalya, Verstappen wins a Las Vegas thriller, and India post a record 720/9 in Wellington — 24 verified stories in one 1024×1024 image, with an hour-by-hour timeline and a DATE CHECK footer naming the stories from other days that were deliberately kept out.
 
 ## Run it
 
