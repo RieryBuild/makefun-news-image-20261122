@@ -74,19 +74,21 @@ the image's DATE CHECK footer instead.
 - Nitish Setu opens — Sat 21 Nov. PM Modi inaugurated the six-lane,
   9.76 km Ganga bridge in Bihar (Rs 4,280 crore); 227 projects worth
   Rs 34,470 crore launched. Source: ANI/press.
-- Pentagon curbs Canada ties — reported Fri 20 Nov (WaPo); Sen. Mike Rounds
-  said Sat 21 Nov it mainly limits think-tank/social contacts; NORAD, NATO
-  and intelligence sharing unaffected. Source: AP.
-- Vance won't back Iran strikes — Fri 20 Nov White House press conference:
-  Vance declined to say he would have authorised the February strikes.
-  Source: press reports, 21 Nov.
+- Chahal joins BJP — Sat 21 Nov. Cricketer Yuzvendra Chahal joins the
+  BJP, named special invitee to the party's OBC Morcha national
+  executive. Source: ANI, 21 Nov 2026.
+- EU budget cuts + digital tax — Sat 21 Nov. European Council President
+  António Costa proposes €204bn of cuts to the 2028–34 budget and a 3%
+  digital levy on big tech. Source: Reuters, 21 Nov 2026.
 - Cyclone Akvan — Sat 21 Nov: 20 flights cancelled, 4 diverted at Ranchi;
   Kolkata also hit. Source: Aviation India.
-- Air India Jeddah halt — announced Fri 20 Nov: Jeddah flights suspended
-  to 24 Nov; Riyadh/Dammam to 30 Nov. Source: ANI.
+- Seoul exam-cheating bounty — Sat 21 Nov. President Lee Jae Myung
+  clarifies the 100m-won ($75,000) reward per cheating case has no cap
+  (first announced 17 Nov). Sources: AJP; Korea JoongAng Daily, 21 Nov.
 - Man City 1–1 Fulham — Sat 21 Nov, Premier League.
-- F1 qualifying — Fri 21 Nov (Las Vegas local): Antonelli fastest,
-  1:33.893 (see panel 11).
+- NFL Sunday — Sun 22 Nov (FORECAST). 11 games today, incl. Steelers at
+  Eagles and Vikings v 49ers in Mexico City. Sources: NFL schedule;
+  theScore.
 
 ## DATE CHECK — deliberately NOT in this edition (Friday 20 Nov or earlier)
 
@@ -100,6 +102,14 @@ the image's DATE CHECK footer instead.
   Source: Reuters.
 - Eisenkot asked to form Israel's government — mandate given 7–8 Nov.
   Source: Xinhua/Times.
+- Pentagon curbs Canada ties — reported Fri 20 Nov (WaPo); Sen. Mike Rounds
+  said Sat 21 Nov it mainly limits think-tank/social contacts; NORAD, NATO
+  and intelligence sharing unaffected. Source: AP.
+- Vance won't back Iran strikes — Fri 20 Nov White House press conference:
+  Vance declined to say he would have authorised the February strikes.
+  Source: press reports, 21 Nov.
+- Air India Jeddah halt — announced Fri 20 Nov: Jeddah flights suspended
+  to 24 Nov; Riyadh/Dammam to 30 Nov. Source: ANI.
 - Wall Street slide (Nasdaq, Nvidia) — Fri 20 Nov trading.
 
 ## Big-number strip (all verified, from panel stories)
@@ -112,5 +122,6 @@ Finals champion.
 ## Story count
 
 20 stories in this edition: 13 panels (3 heroes + 10) and 7 in ALSO IN THE
-DAY. The DATE CHECK footer names 6 further stories that were checked and
-kept out because they are older news.
+DAY. The DATE CHECK list below names 9 further stories that were checked
+and kept out because they are older news (8 of them on the image footer;
+the Wall Street slide is named here only).

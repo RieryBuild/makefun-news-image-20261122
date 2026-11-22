@@ -217,3 +217,150 @@ Repo pushed + verified 22 Nov 2026 ~09:45 WITA (first push) and
   f28155c65cd9b831d7342e4ea2bbffb487003216345ace009d7140f2e0e39d5c.
 - Recorder: NOT APPLICABLE (HTTP 400 refusal, see MQ7) — coordinator
   bundles transcripts from the Muse session; DO NOT seal a recorder.
+
+---
+
+# FIX ROUND — Gate 1 fail, 4 findings (22 Nov ~10:05–10:35 WITA)
+
+Coordinator Gate 1 (OpenRouter nemotron-3-ultra :free): code APPROVE,
+facts REJECT — 4 findings, all adjudicated VALID. Fix builder session
+(this session) applied the fix below; parent commit 400c6ee76df087a183f83ebcb9fa9f34ce5e4f78.
+
+## The fix
+
+1. Removed from ALSO IN THE DAY: Pentagon curbs Canada ties, Vance won't
+   back Iran strikes, Air India Jeddah halt (all first reported Fri 20 Nov)
+   + the F1 qualifying ALSO item (date wrong: said "Fri 21 Nov (Las Vegas
+   local)"; qualifying was Fri 20 Nov local, race Sat 21 Nov 20:00 local;
+   panel 11's "Friday qualifying" was already correct and stays).
+2. The 3 removed items moved to the DATE CHECK footer (image footer now
+   names 8; NEWS.md DATE CHECK section names 9, incl. the Wall Street
+   slide which stays NEWS.md-only). NEWS.md story-count paragraph updated
+   to say so honestly.
+3. Replacements (all verified from PRIMARY sources, first-report dates):
+   - Chahal joins BJP — Sat 21 Nov (ANI, 21 Nov 2026; OBC Morcha special
+     invitee). VERIFIED.
+   - EU budget cuts + digital tax — Sat 21 Nov (Reuters, BRUSSELS Nov 21;
+     Costa proposes €204bn cuts to the 2028–34 budget + 3% digital levy).
+     VERIFIED.
+   - Seoul exam-cheating bounty — Sat 21 Nov DEVELOPMENT (AJP + Korea
+     JoongAng Daily, 21 Nov: Lee clarifies the 100m-won / $75,000 reward
+     per case has no cap; bounty itself first announced 17 Nov — NEWS.md
+     says so). VERIFIED as a genuine 21 Nov development, same precedent as
+     the edition's Riemann (claim 20 Nov, verified 21 Nov) and El Chapo
+     (operation 20 Nov, announced 21 Nov) panels.
+   - NFL Sunday — Sun 22 Nov FORECAST (NFL schedule + theScore: 11 games
+     today, incl. Steelers at Eagles, Vikings v 49ers in Mexico City;
+     no week number used — sources disagree on Week 11 vs 12). VERIFIED.
+   Candidates CHECKED and REJECTED (never included): Prince William forest
+   cover (announced 19/20 Nov), TikTok deepfake tool (Fri 20 Nov),
+   Japan live-fire training (19 Nov 2+2), Mamdani Rikers plan (Fri 20 Nov,
+   nyc.gov), Oslo Christmas tree (felled Fri 20 Nov), Santa Ana Volcano
+   (22 Nov access notice only, weak non-primary source — not used).
+   Ukraine 400-drone barrage + Oman tankers STAY EXCLUDED (coordinator
+   verified 19–20 Nov / 21 Nov; not re-added).
+4. Story count UNCHANGED: 20 stories (13 panels + 7 ALSO) — 4 removed,
+   4 added. Masthead "20 STORIES", NEWS.md count section, README "20
+   verified stories" all still correct (README untouched).
+
+## Layout fix (found by self-check during re-render)
+
+- ALSO grew to 4 rows: first render overflowed (final y 1013 > 1006
+  assert). Saved 9px (ALSO leading 13→12, gaps trimmed) → final y 1004.
+- Then found the credit line struck through by the footer rule / border:
+  `anchor="ma"` puts y at the ascender TOP, so the 9pt credit sat on the
+  inner border (1011). Removed the rule above the credit + trimmed 8px
+  of gaps (ALSO/DATE CHECK heading gaps 16→14) → final y 997, credit
+  clear of the border (verified by row scan: no dark rows 996–1010, border
+  lines only at 1011/1014/1015; zoomed crop viewed clean). The same
+  overlap existed in the 400c6ee render (same geometry) — fixed here.
+- entry.png re-rendered: JPEG 1024×1024, 295,176 bytes, sha256
+  776df249775684d963e9f461f1730b2ea93c90263fb654d40154d3e02da6c3be.
+
+## main.ts hardening (from the re-review iterations)
+
+The fix-round code reviewer first REJECTED on 3 rounds of findings; each
+was fixed and re-verified (all real robustness gaps, none affecting the
+shipped file, which is SOF0 from PIL):
+- (a) SOF markers: accept all SOF (0xC0–0xCF except DHT/JPG/DAC), not
+  just SOF0/SOF2.
+- (b) SOF segment len >= 8 required; early EOI rejected (must be the
+  final 2 bytes); second SOI rejected.
+- (c) 0xFF fill bytes skipped before marker codes; every read
+  bounds-checked after skipping (no out-of-bounds read on truncation).
+- (d) TOCTOU: writeFileSync(dest, buf) replaces copyFileSync — the
+  validated buffer itself is written.
+- (e) Whole-file marker check: exactly one SOI and one EOI in the file
+  (entropy data stuffs 0xFF as 0xFF00, so raw FFD8/FFD9 can only be real
+  markers; the shipped file has exactly 1 of each; SOF0 sits at offset
+  158, so the frame parser alone would miss an early EOI after it).
+- Negative tests (all exit 1, clean messages): truncated, bad SOI,
+  early EOI, second SOI, trailing junk — all rejected; good file passes.
+  main.ts re-run 2× after the final edit: byte-identical outputs.
+
+## Re-gate (fresh, on the FIXED artifact)
+
+- MQ1 (competition read live): PASS — requirements + coordinator state
+  re-read; entries still close 24 Nov 08:00 WITA; quota re-check is the
+  coordinator's step (was can_submit TRUE, day 6/6, hard 40/40 at 09:55).
+- MQ2 (entry shape): PASS — 7 files, LICENSE SPDX line 1, README 3 badges
+  verbatim, NEWS.md fixed, main.ts stdlib-only, package.json unchanged.
+- MQ3 (determinism): PASS — compose.py 2× identical sha256 776df249…;
+  main.ts 2× byte-identical to entry.png (out-fix9/10 cmp clean).
+- MQ4 (size/format/legibility): PASS — JPEG FFD8/FFD9, 1024×1024,
+  295,176 B (<300 KB target, ≤1 MiB hard), layout final y 997 ≤ 1006.
+  300 px downscale viewed: masthead date + 3 hero headlines legible;
+  ALSO + DATE CHECK footer fully readable, no truncation/ellipsis.
+- MQ5 (angle): PASS — unchanged ("Early Edition — Sunday morning
+  broadsheet"); replacements are ALSO breadth items, angle untouched.
+- MQ6 (facts/dates): PASS — every replacement verified from primary
+  sources (see above); rejected candidates documented; no new dated
+  claim introduced (NFL is labelled FORECAST; Seoul dated as the 21 Nov
+  clarification with the 17 Nov origin stated).
+- MQ7 (authorship/transcripts): PASS — recorder still N/A (HTTP 400,
+  unchanged); fix session joins the bundle (coordinator step: re-SELECT
+  usage with 3 sessions, re-bundle, re-check). compose.py/main.ts/NEWS.md
+  edits are revisions of this round's own files (never read the 21 Nov
+  build's files). No new panels (ALSO is text-only).
+- MQ8 (self-critique): PASS — cycle 1: layout overflow found + fixed;
+  cycle 2: credit-line strike-through found + fixed; cycle 3: full image
+  + 300 px + bottom crop viewed, no further weakness. Full cycle with no
+  material weakness → stop.
+- Gate 0 (requirements): PASS — same 56 checks; entry still satisfies
+  the applicable ones (see original Gate 3 audit; nothing in the fix
+  changes any row).
+- Gate 1 (local run + checks): PASS — main.ts ×2 runs byte-identical;
+  entry.png verified (format/size/sha above); README badges + LICENSE
+  unchanged and verified; no secrets in entry files (grep-checked);
+  removed items confirmed absent from ALSO in both NEWS.md and
+  compose.py (grep: only DATE CHECK matches remain).
+- Gate 2 (multi-model review): PASS —
+  - OpenRouter :free (nvidia/nemotron-3-ultra-550b-a55b:free, $0):
+    code APPROVE (12,398 tokens, final round; "no material bugs");
+    facts APPROVE (7,996 tokens; all 6 checks: removed items handled,
+    F1 item gone + panel 11 correct, all 4 replacements verified,
+    DATE CHECK compliant, count 20 correct, no other violations).
+  - Gemini text/copy: 503s CLEARED — gemini-3.8-flash answered the
+    copy-check of the 4 new ALSO lines: all 4 "OK" (no typos/grammar).
+    The recorded 503 gap from the first build no longer stands.
+- Gate 3 (literal gate-row audit): PASS — re-audited against the fixed
+  files: repo/commit/bundle/transcripts (coordinator submits); story
+  count 20 consistent in image masthead, NEWS.md, README; DATE CHECK
+  footer 8 items on image / 9 in NEWS.md; entry.png ≤1 MiB, 1024×1024,
+  deterministic ×2; main.ts stdlib-only, no network, no repo writes;
+  no committed keys/secrets; no kit-starter lines re-typed.
+
+## Verdict: READY FOR SUBMIT (fix builder)
+
+- Push: new commit(s) on top of 400c6ee via PAT git-data API (see below).
+- entry.png: 295,176 bytes, sha256
+  776df249775684d963e9f461f1730b2ea93c90263fb654d40154d3e02da6c3be.
+- Recorder: NOT APPLICABLE (HTTP 400 refusal, see MQ7) — coordinator
+  bundles transcripts from the Muse session; DO NOT seal a recorder.
+
+## Push record (filled after push)
+
+- Commit A (fix): <sha> — NEWS.md, entry.png, main.ts, gate-run.md.
+- Commit B (record): <sha> — gate-run.md push verification (if needed).
+- Remote tree verified blob-for-blob; About verified (homepage
+  https://make.fun/bounty/news-image-20261122, topic makefun).
