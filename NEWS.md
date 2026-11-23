@@ -1,223 +1,151 @@
-# Sunday 22 November 2026 — The World in One Day (Round 4)
+# NEWS.md — news-image-20261122 round 5 (H7: "The day, hour by hour, field by field")
 
-**Hypothesis H6 — "Sunday's own stories lead."** The deck and the three hero
-panels are the stories only Sunday owns: Bahrain (first reported Sunday
-04:46 UTC), Sparta II (hit Saturday, still burning Sunday), COP31 (no deal,
-decided Sunday). Drones and Hong Kong, which every entry carries, are panels,
-not heroes. 28 stories: 13 panels + 15 ALSO. Strip: six positive figures, no
-"0" cell. All 28 stories happened, or were first reported, on Sunday
-22 November 2026 in some timezone. Illustrations are original flat drawings,
-not photographs.
+## Angle
+The lead device is a UTC timeline spine: 8 timed beats across the full
+day, from the Seoul minister's resignation (~02:30 UTC) to Alcaraz's ATP Finals win
+(~19:15 UTC). Stories are organised by FIELD (12-field bar; every panel
+carries a field tag above it) instead of by region. Three heroes anchor
+the day: COP31 ends with NO deal, Democrats reach 258 House seats, and
+Russia's 186-drone night over Ukraine. 33 stories: 13 panels + 20 ALSO.
 
-## The three heroes
+## Day rule
+An event counts if it happened OR was first reported on Sunday 22
+November 2026 in any timezone. First-report dates below are from the
+wire or primary source named, never from aggregator republication dates.
 
-### 1. BAHRAIN — CLAIM — Iran claims two US radars hit; Bahrain denies
-Iran's Revolutionary Guard (IRGC) says its Aerospace Force hit the radars of
-two US Patriot systems at the Al-Riffa and Awali bases in Bahrain, in a
-combined missile-and-drone operation launched Saturday night in retaliation
-for alleged US drone incursions and a strike on a radar on Hengam Island.
-Bahrain's Defence Force says its air defences intercepted the attack, falling
-debris caused minor damage, and a civilian industrial facility caught fire;
-no casualties. A US official told CBS there was no damage. First reported
-Sunday 04:46 UTC (ABNA).
-Sources: ABNA (22 Nov 04:46 UTC); Xinhua (22 Nov); Al Jazeera (22 Nov);
-Bahrain Defence Force / Interior Ministry statements; CBS via US official.
+## Heroes
+1. COP31 ends with NO deal — CONFIRMED. Talks in Antalya end after 44
+   hours of overtime, the longest COP ever, with no agreement: the first
+   no-deal COP since Copenhagen 2009. A $120bn annual adaptation target
+   was dropped; fossil fuels went unnamed. (UN News / wire coverage,
+   22 Nov.)
+2. Democrats reach 258 House seats — CONFIRMED. Virginia Foxx concedes
+   North Carolina's 5th to Chuck Hubbard after a recount confirms his
+   330-vote lead (AP called the race Sunday; 258 seats as of Sunday, 4
+   races still open). Largest Democratic majority since 1992; a gain of
+   44 seats. (AP via Public Radio East, CNN, 22–23 Nov.)
+3. 186 drones, a block falls in Dymer — CONFIRMED. Russia fires 186
+   drones overnight; Ukraine's air force says 161 were downed or
+   jammed, including 56 of 72 jet-powered. A residential block collapses
+   in Dymer (14 may be trapped); a drone hits a grocery store in
+   Vyshneve: 3 killed, 15 hurt. (Ukraine Air Force / Reuters, 22 Nov.)
 
-### 2. SPARTA II — REPORTED — Still burning on Sunday
-Two drones struck the Russian-flagged cargo ship Sparta II on Saturday
-morning in international waters in the Gulf of Finland; the ship caught fire
-and drifted into Finnish waters, anchoring off Loviisa. The fire smouldered
-into Sunday: visible flames out, containers still warm, cooling continuing.
-All 16 crew evacuated to a nearby Russian ship; one slightly hurt. Finland's
-military says Ukraine was likely behind the strike; Ukraine has not
-commented. A Russian rescue vessel began towing the ship out of Finnish
-waters on Sunday afternoon. Seven vessels fought the fire (2 Russian,
-2 Estonian, 3 Finnish).
-Sources: Reuters (22 Nov); Finnish Border Guard / Yle (22 Nov); CNN (22 Nov).
+## Panels
+4. Russian corvette sunk in Benghazi — REPORTED. Ukrainian sea drones
+   blamed for the blast that capsizes the corvette Merkury in Benghazi
+   harbour; a Ka-27 helicopter destroyed aboard. Zelenskyy confirms the
+   sinking on Monday; the strike itself happened in the early hours of
+   Sunday. (AP, CNN, Reuters, 22–23 Nov.)
+5. Iran claims two US radars hit — CLAIM. First reported Sunday 04:46
+   UTC. Bahrain denies it; no casualties reported.
+6. Sparta II still burning on Sunday — CONFIRMED. The cargo ship, hit
+   by two drones on Saturday, keeps burning; all 16 crew safe.
+7. 98.79% turnout in Hong Kong vote — CONFIRMED. Final turnout 98.79%:
+   5,640 of 5,709 voters, for 723 Election Committee seats; 856
+   candidates. (info.gov.hk, 22 Nov.)
+8. India declare 720/9 in New Zealand — CONFIRMED. The highest Test
+   total ever made in New Zealand, declared in Wellington.
+   (ESPNcricinfo, 22 Nov.)
+9. Verstappen wins the Las Vegas GP — CONFIRMED. Race time
+   1:27:39.624. (FIA, 22 Nov.)
+10. Alcaraz wins his first ATP Finals — CONFIRMED. Beats Zverev 6–2,
+    7–6(7) in Turin; the title is worth $5.171m. (ATP, 22 Nov.)
+11. Ebola medics trapped in Ituri — CONFIRMED. A response team shelters
+    24+ hours in a maternity ward as fighting rages near the hospital
+    where the outbreak began. 11,613 confirmed cases and 5,678 deaths
+    as of 17 Nov (WHO Disease Outbreak News). (WHO chief on X / WHO,
+    22 Nov.)
+12. Seoul minister quits over AI cheating — CONFIRMED. Education
+    Minister Choi Kyo-jin resigns on Sunday; President Lee Jae Myung
+    accepts within the hour. 111 device-misconduct cases were found at
+    the CSAT exam. (Yonhap / AFP / Korea JoongAng Daily, 22 Nov.)
+13. Márquez takes his 8th MotoGP title — CONFIRMED. Eighth place in
+    Portugal is enough after a 102-point comeback; Bezzecchi wins the
+    race. (MotoGP.com / Reuters, 22 Nov.)
 
-### 3. COP31 — CONFIRMED — The deal that died
-After a record 44 hours of overtime, COP31 closed in Antalya on Sunday with
-no overarching deal — the first such failure since Copenhagen in 2009, and
-the longest UN climate summit on record. President Murat Kurum told the
-closing plenary: "I understand that there is no agreement on this text. For
-that reason, these decisions have not been adopted." The final draft never
-named fossil fuels (only recalling the 2023 Dubai consensus), dropped a
-$120bn annual adaptation-finance target, and set a 35%-of-final-energy
-electricity goal for 2035. The EU, UK, Panama, Marshall Islands and Norway
-were among those refusing the text. UN chief António Guterres said he was
-"deeply disappointed".
-Sources: UN News (22 Nov); AFP via phys.org (22 Nov); IPS (22 Nov);
-Al Jazeera (adaptation target dropped).
+## ALSO on Sunday (20)
+- Lowy: the US lead over China in Asia narrows to 5.3 points (78.9 vs
+  73.6), smallest since the index began in 2018. Index published
+  22 Nov. (Lowy Institute / SMH, 22 Nov.)
+- Kim: at a credentials ceremony on Sunday, Kim Jong-un says North
+  Korea "seeks neither supremacy nor expansion". (KCNA, reported 23 Nov;
+  ceremony 22 Nov.)
+- NFL: 49ers rout Vikings 35–10 in Mexico City, Sunday Night Football.
+  (Reuters / AP, 22 Nov.)
+- Colombia: the government asks X to suspend former president Petro's
+  account after he calls for the president to resign. Request sent
+  Sunday. (MinTIC / Xinhua, 22 Nov.)
+- Khartoum: drones strike early Sunday, killing five children and
+  injuring at least 10; homes and a UN building damaged.
+- Nigeria: reprisal attacks kill at least 35 Fulani in Wawa, Niger
+  State, after a raid on Luman Ba'are. (AFP security report, 22 Nov.)
+- Idlib: a landmine kills five children, aged 8–15, in Umm Khuzaym.
+  (Syrian state media, 22 Nov.)
+- Hormuz: reported attacks on shipping are at their highest level since
+  the war began — over 30 in October, 22 in November as of Sunday
+  (UKMTO data). (CNN, 22 Nov.)
+- Kyiv: Zelenskyy presses the US to release Patriot interceptors that
+  partners have already paid for. (Telegram / Al Jazeera, 22 Nov.)
+- Israel: Likud–Yashar unity talks end with no deal after four hours in
+  Herzliya; Eisenkot's bloc holds 48 seats, 13 short of a majority.
+  (Channel 12 / wires, 22 Nov.)
+- Vatican: Pope Leo XIV hosts lunch for ~1,300 poor guests.
+- Tankers: seven hit in the Strait of Hormuz since 16 Nov. (JMIC,
+  22–23 Nov.)
+- Football: Liverpool beat United 4–0.
+- NBA: Wembanyama scores 50 points.
+- Trump: the US "doesn't need a deal" with Iran. (Truth Social via
+  CNN, 22 Nov.)
+- India: ranks 3rd in the Asia Power Index at 40.5. (Lowy, 22 Nov.)
+- Kyiv: Russia fired about 2,700 drones, 1,460 guided bombs and 165
+  missiles in a week. (Zelenskyy, 22 Nov.)
+- Dymer: a boy, 7, is pulled alive from the collapsed block.
+- 49ers: now 9–1, tied for the NFL's best record.
+- Bahrain: a strike hits a civilian industrial site near the Sitra
+  refinery; two people hurt.
 
-## Panels 4–13
+## Strip figures (all positive, no "0" cell)
+258 House seats · 186 drones fired · 44h COP31 overtime · 11,613 Ebola
+cases (as of 17 Nov) · 720/9 India declared · 98.79% HK turnout.
 
-### 4. UKRAINE — CONFIRMED — 186 fired, 161 downed
-Russia fired 186 drones at Ukraine overnight (from 18:00 Sat), Ukraine's air
-force said, including 72 jet-powered models. Air defences shot down or
-jammed 161 by 08:00 Kyiv time (06:00 UTC); strikes were recorded at 18
-locations and debris at 6 more. Moscow said it downed 170 Ukrainian drones.
-Sources: Ukrainian Air Force (Telegram, 22 Nov); General Staff of Ukraine;
-QNA (22 Nov).
+## Timeline times (UTC; "~" = approximate)
+~02:30 Seoul minister resigns (disclosed ~11:30 KST, Seoul Daily;
+accepted ~12:30 KST); ~04:46 Bahrain radar claim first reported;
+~05:30 Verstappen wins Las Vegas (race 04:00–~05:28 UTC); ~06:00
+overnight drone tally published; 13:45 MotoGP race ends in Portimão
+(Crash.net live blog); ~13:55 COP31 ends with no deal (final plenary
+concluded ~13:55 UTC (16:55 TRT), Earth Negotiations Bulletin); ~18:00 Democrats reach
+258 (Foxx concession Sunday afternoon ET); ~19:15 Alcaraz wins in Turin
+(won ~19:15 UTC; tennisuptodate live blog 20:17 CET; sportsleo
+concluded 22:16:51 EAT = 19:16 UTC). Corrected 24 Nov (fix round):
+Seoul/COP31/Alcaraz times re-verified from primary sources — the r5
+build had taken them from another entry's timeline unconverted (MQ6
+lesson: never take a time from another entry's timeline).
 
-### 5. HONG KONG — CONFIRMED — 98.79% turnout
-Hong Kong's 2026 Election Committee Subsector Ordinary Elections drew a
-record 98.79% turnout: 5,640 of 5,709 voters cast ballots by the 6pm close;
-counting finished at 10:15pm. The poll returned 723 winners from 856
-candidates across 31 subsectors, beating 2021's 89.77%.
-Sources: info.gov.hk (22 Nov, two releases); China Daily Asia (22 Nov).
+## Date check — kept OUT (not 22 Nov)
+400-drone barrage (19–20 Nov) · Peru quake (20 Nov) · El Chapo ·
+BepiColombo · Nvidia SEC probe · Bayelsa boat · Gaza aid-van strike ·
+EU–Indonesia deal · Estonia border · Qeshm MQ-9 claim. The 11,613 Ebola
+cases and 5,678 deaths are WHO figures as of 17 Nov, cited as the
+outbreak total behind Sunday's trapped-team story — not a 22 Nov count.
 
-### 6. CRICKET — CONFIRMED — India pile up 720/9
-India declared their first innings on 720 for 9 at Wellington — the highest
-Test total ever in New Zealand, and the first innings in Test history in
-which each of the first seven partnerships reached 50. KL Rahul made 136,
-Rishabh Pant 128, Shubman Gill 98. India led by 352; New Zealand closed day
-four on 119 for 2.
-Sources: ESPNcricinfo match report (published 22 Nov 06:00 UTC); Wisden
-(22 Nov); Cricket Australia (22 Nov).
-
-### 7. FORMULA 1 — CONFIRMED — Verstappen wins Vegas
-Max Verstappen won the Las Vegas Grand Prix in 1:27:39.624, holding off
-Lando Norris (+0.639s) with Oscar Piastri third (+1.529s), after 35 lead
-changes. The race ran Saturday night in Las Vegas — Sunday morning in UTC.
-Sources: FIA (22 Nov); Formula 1 (22 Nov).
-
-### 8. NEPAL — CONFIRMED — Shah flies to Delhi
-Nepal's prime minister Balendra Shah arrived in New Delhi on Sunday for a
-two-day state visit at Narendra Modi's invitation — his first state visit to
-a neighbouring country since taking office in March. He leads a 34-member
-delegation; talks with Modi on energy, rail, connectivity and the border
-follow on Monday.
-Sources: IANS (22 Nov); India MEA via X (22 Nov); Times Now (22 Nov).
-
-### 9. THE POPE — CONFIRMED — Lunch for 1,300
-Pope Leo XIV shared lunch with about 1,300 poor and vulnerable people in
-the Vatican's Paul VI Hall, marking the 10th World Day of the Poor. The
-annual meal was postponed by a week because of his trip to Latin America.
-Sources: Vatican News (22 Nov); Catholic World Report (22 Nov).
-
-### 10. ISRAEL — CONFIRMED — Eisenkot condemns arson
-Opposition leader Gadi Eisenkot — tasked by President Herzog with forming
-Israel's next government after the 27 October election — condemned arson
-attacks by Jewish settlers in the West Bank. His Yashar party opened
-marathon coalition talks with Netanyahu's Likud on Sunday; he has until
-6 December, plus a possible 14-day extension.
-Sources: Reuters (22 Nov); Jerusalem Post via StayCurrentNews (22 Nov).
-Note: the mandate itself dates to 7–8 Nov; the 22 Nov news is the
-condemnation and the opening of the Likud talks.
-
-### 11. TENNIS — CONFIRMED — Alcaraz takes Turin
-Carlos Alcaraz beat world No. 1 Alexander Zverev 6–2, 7–6 to win his first
-ATP Finals title in Turin, saving three set points in the second-set
-tie-break. The 23-year-old went 5–0 for the week and collected a record
-$5.171m. Zverev still ends the year as world No. 1.
-Sources: ATP Tour (22 Nov); Reuters (22 Nov).
-
-### 12. FOOTBALL — CONFIRMED — Liverpool rout United 4–0
-Liverpool thrashed Manchester United 4–0 at Anfield in Mauricio
-Pochettino's first game in charge of United. Leny Yoro was sent off after
-eight minutes; Dominik Szoboszlai, Florian Wirtz, Rio Ngumoha and Victor
-Muñoz scored. United stay 19th, one point off the bottom.
-Sources: Reuters (22 Nov); Sky Sports (22 Nov).
-
-### 13. KHARG — REPORTED — Fourteen tankers wait
-More than 14 tankers are staged at Kharg Island, Iran's main oil export
-terminal, crewed and flying Iranian flags, ready to test the US naval
-blockade. No departure had been confirmed by Sunday morning; one reported
-tanker signal ("Khat Shekan") was judged spoofed by TankerTrackers. Donald
-Trump, in an interview aired Sunday, dared them to sail ("they'll all be at
-the bottom of the sea"). UKMTO reported on Sunday evening that a tanker was
-involved in an incident with military forces in the Gulf of Oman, near
-Chabahar; vessel and forces unidentified, investigations ongoing.
-Sources: Reuters / Euronews (22 Nov); Fox News (22 Nov); UKMTO bulletin
-(22 Nov 14:25 GMT); TankerTrackers via PlanetShift (22 Nov).
-
-## ALSO on Sunday — 15 more stories
-
-14. **Rugby** — England 37–12 New Zealand, a record margin (25 points, most
-    ever against the All Blacks). Played Saturday in London, Sunday in New
-    Zealand — counted under the any-timezone rule. (AP / Sky Sports)
-15. **China** — Beijing "firmly opposes" the FCC's curbs barring China Mobile,
-    China Telecom and China Unicom from direct US phone-number access; the
-    FCC voted Thursday. (Xinhua, 22 Nov)
-16. **Australia** — Defence Minister Richard Marles calls the US
-    Congressional Budget Office's AUKUS warning wrong: "AUKUS is very much
-    happening." (Reuters, Sydney 22 Nov)
-17. **Running** — Philadelphia Marathon weekend draws 40,000 participants,
-    its largest ever; 20,000 run Sunday's marathon. (philadelphiamarathon.com)
-18. **Tennis doubles** — Theo Arribage & Albano Olivetti win the ATP Finals
-    doubles, beating Arevalo/Pavic 3–6, 7–6(2), [10–6]. (ATP Tour, 22 Nov)
-19. **Quake** — M4.1 near Homalin, Myanmar, 21:05 UTC Saturday — 03:35
-    Sunday local time. (NCS via quakemap24)
-20. **Football** — Hull stun Brighton 2–0 with a late Oli McBurnie brace.
-    (The Times, 22 Nov)
-21. **Culture** — The 61st Venice Biennale ("In Minor Keys") closes after
-    714,015 visitors, a record 100 national participations.
-    (labiennale.org, 22 Nov)
-22. **NFL** — Sunday: Lions 31–21 Bucs; Cowboys 51–30 Titans; Chiefs 34–7
-    Cardinals. (Reuters, 22 Nov)
-23. **Rescue** — A 16-year-old gamer and his mother helped the FBI free a
-    missing 17-year-old girl held in Oregon. The rescue was in late October;
-    the BBC feature telling the story was first published 22 Nov. (BBC,
-    22 Nov)
-24. **Culture** — The first Frieze Abu Dhabi closes on Sunday. (ODN, 22 Nov)
-25. **Climate** — 90+ nations had backed a separate COP31 electrification
-    pledge (electricity to 35% of final energy by 2035). (UN News / AFP)
-26. **Moscow** — Russia says its air defences downed 170 Ukrainian drones
-    over several regions and the Black Sea. (QNA, 22 Nov)
-27. **Washington** — Trump says he is inclined to resume strikes on Iran
-    after the new year if negotiations fail. (Fox News, interview aired
-    22 Nov)
-28. **Vatican** — At the Angelus, Leo XIV prayed for victims of conflicts and
-    for drought-hit Papua New Guinea. (Vatican News, 22 Nov)
-
-## Counts
-
-Regions: Europe 11 (Sparta II, Drones, Pope, Tennis singles, Liverpool,
-England, ATP doubles, Hull, Venice, Russia-170, Angelus) · Middle East 4
-(Bahrain, Israel, Kharg, Frieze Abu Dhabi) · Asia-Pacific 5 (Hong Kong,
-Cricket, Nepal, China, Myanmar quake) · Americas 5 (F1, Philly Marathon,
-NFL, BBC rescue, Trump strikes hint) · Oceania 1 (Marles) · World 2 (COP31,
-electrification pledge). Total 28.
-
-Big-number strip: 186 drones fired · 161 downed · 98.79% Hong Kong turnout
-· 720/9 India declared · 44h COP31 overtime · 723 Hong Kong seats filled.
-All six are positive figures from the panels above; no "0" cell.
-
-Timeline (UTC): 04:46 Bahrain claim first reported · 06:00 Kyiv's drone
-tally (08:00 Kyiv) · 14:15 Hong Kong count done (22:15 HKT) · 14:25 UKMTO
-Gulf alert · 19:17 Alcaraz wins in Turin (20:17 CET).
-
-## Date discipline
-
-Day rule: a story counts if it happened, or was first reported, on Sunday
-22 November 2026 in any timezone. Excluded to the DATE CHECK footer (all
-verified from primary sources, not from other entries): the 400-drone
-barrage (overnight 19–20 Nov); Peru quake (20 Nov); 'El Chapo Isidro'
-seized (21 Nov); Kryvyi Rih strikes (21 Nov); Basra power-plant fire
-(21 Nov); Bayelsa boat (20 Nov); BepiColombo Mercury arrival (Sat 18:24
-UTC); EU–Indonesia signing (21 Nov); Wall Street correction (Friday 20 Nov
-close); Denmark assassination plot (20 Nov); Qeshm Island MQ-9 claim
-(21 Nov, 02:32 UTC); France seeking UN action on Myanmar (French foreign
-ministry statement Sat 21 Nov); Ladakh panchayat polls (voted Sat 21 Nov);
-Nitish Setu bridge opening (Modi inaugurated Sat 21 Nov); Arsenal 2–2
-Newcastle and Leeds 4–1 Chelsea (both Sat 21 Nov); Cyclone Akvan flight
-cancellations at Ranchi (Sat 21 Nov); Lewis Pugh's Hormuz swim (swim 16–18
-Nov, announced by Pugh 21 Nov); Gaza aid-van strike (Sat 21 Nov).
-
-Borderline calls, stated openly: England 37–12 was played Saturday in
-London but Sunday in New Zealand (any-timezone rule); the Myanmar quake
-struck 21:05 UTC Saturday, 03:35 Sunday in Myanmar; the F1 race ran
-Saturday night in Las Vegas, Sunday morning in UTC; the BBC gamer-rescue
-feature was first published Sunday although the rescue was in late October;
-the Eisenkot mandate is from 7–8 Nov, but the arson condemnation and the
-Likud talks are Sunday's news.
+## Borderline calls
+- Merkury: the strike happened early Sunday; Zelenskyy's confirmation
+  came Monday. The panel says "Zelenskyy confirms it" and is tagged
+  REPORTED.
+- Kim's remarks: made at a Sunday ceremony, reported by KCNA on Monday.
+  Counts under the day rule (happened 22 Nov).
+- 49ers–Vikings: played Sunday night in Mexico City (22 Nov local),
+  ending after midnight UTC. Counts (22 Nov in the event timezone).
+- Lowy Index: published 22 Nov.
+- The Ebola case total (11,613) is dated 17 Nov in the strip label and
+  in the panel body context; the Sunday news is the trapped team.
 
 ## Build
-
-`compose.py` (PIL, stdlib only) renders the 1024×1024 broadsheet from 13
-flat-illustration panels generated in-session and a schematic map, and writes
-`entry.png` (JPEG). `main.ts` (Node 22, stdlib only) embeds the same JPEG
-bytes, validates the JPEG structure, and writes it to
-`$MAKEFUN_OUTPUT_DIR/entry.png`. Deterministic: compose.py 2× byte-identical,
-main.ts 2× byte-identical. 300px legibility test: PASS (masthead date, deck,
-strip and all three hero headlines read clearly).
+compose.py (PIL) renders entry.png from 13 panels generated in-session
+by the image model in flat illustration style, plus a schematic world
+map drawn from coarse continent outlines. main.ts (Node 22, stdlib
+only) validates the JPEG and copies it to $MAKEFUN_OUTPUT_DIR. Entry:
+JPEG 1024×1024, 280,022 bytes, sha256
+bdbcfe8abdeaf558c788884d8613b185992e196a1deeb4582fe1ecca7c6f4696.
+Deterministic: compose.py and main.ts each run twice byte-identical.
