@@ -1,145 +1,136 @@
-// main.ts — news-image-20261122 round 3.
+// main.ts — news-image-20261122, round 4 entry writer.
 //
-// Copies the repository's entry.png to $MAKEFUN_OUTPUT_DIR/entry.png after
-// validating that it is one whole JPEG within the competition limits
-// (at most 1 MiB, at most 1024 by 1024 pixels). Node builtins only; the
-// program reads one file next to this script and writes one file into the
-// output directory, nothing else. The bytes written are the bytes read, so
-// two runs write identical output.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+// Stdlib only, no network. The entry image lives in this repository as
+// entry.png; this program reads it, validates the JPEG structure
+// (SOI/EOI, segment walk, SOF0 dimensions 1024x1024, scan-data marker
+// rules) and writes the same bytes to $MAKEFUN_OUTPUT_DIR/entry.png
+// (default /output/entry.png). Deterministic: a pure copy.
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const MAX_BYTES = 1048576;
-const MAX_DIM = 1024;
+const HERE: string = dirname(fileURLToPath(import.meta.url));
+const JPEG: Buffer = readFileSync(join(HERE, "entry.png"));
 
-function fail(message: string): never {
-  throw new Error("entry.png rejected: " + message);
+function fail(msg: string): never {
+  throw new Error("main.ts: " + msg);
 }
 
-function isStandalone(marker: number): boolean {
-  return marker === 0x01 || (marker >= 0xd0 && marker <= 0xd9);
-}
-
-function isSof(marker: number): boolean {
-  return marker === 0xc0 || marker === 0xc1 || marker === 0xc2;
-}
-
-// Validate one JPEG buffer. Returns [width, height].
-function validateJpeg(buf: Buffer): [number, number] {
-  if (buf.length < 2) fail("file is empty");
-  if (buf.length > MAX_BYTES) fail("file is " + buf.length + " bytes, over 1 MiB");
+function validateJpeg(buf: Buffer): void {
+  if (buf.length > 1024 * 1024) fail("file exceeds 1 MiB");
+  if (buf.length < 4) fail("file too small to be a JPEG");
+  // SOI must open the file.
   if (buf[0] !== 0xff || buf[1] !== 0xd8) fail("missing SOI marker");
+  // EOI must close the file, with nothing trailing it.
   if (buf[buf.length - 2] !== 0xff || buf[buf.length - 1] !== 0xd9) {
-    fail("missing EOI marker at end of file");
+    fail("missing trailing EOI marker");
   }
 
-  let soiCount = 1;
-  let eoiCount = 0;
-  let sofCount = 0;
-  let width = 0;
-  let height = 0;
-  let pos = 2;
-
-  while (pos < buf.length) {
-    if (buf[pos] !== 0xff) fail("expected marker at offset " + pos);
-    // Skip fill bytes (0xff padding before a marker).
-    while (pos < buf.length && buf[pos] === 0xff) pos++;
-    if (pos >= buf.length) fail("truncated marker at end of file");
-    const marker = buf[pos];
-    pos++;
-    if (marker === 0xd8) {
-      fail("second SOI marker at offset " + (pos - 1));
+  // Walk the marker segments up to SOS.
+  let pos: number = 2;
+  let sawSof0: boolean = false;
+  let sawSos: boolean = false;
+  while (pos + 3 < buf.length) {
+    if (buf[pos] !== 0xff) fail("expected marker prefix at offset " + pos);
+    let marker: number = buf[pos + 1];
+    // Skip 0xFF padding bytes before the marker code.
+    while (marker === 0xff && pos + 1 < buf.length) {
+      pos++;
+      marker = buf[pos + 1];
     }
-    if (marker === 0xd9) {
-      eoiCount++;
-      if (pos !== buf.length) fail("bytes after EOI marker");
+    // Padding-skip may have consumed to the end of the file; re-check
+    // bounds before reading the segment header below.
+    if (pos + 3 >= buf.length) fail("truncated segment header");
+    // 0xFF00 is a stuffed byte, valid only inside scan data — never in
+    // the marker stream before SOS.
+    if (marker === 0x00) fail("0xFF00 stuffing byte in marker stream");
+    // Only SOF0 is a valid start-of-frame here (0xC4 DHT, 0xC8 JPG and
+    // 0xCC DAC are not SOF markers); any other SOF is rejected.
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc0 && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      fail("unexpected SOF marker 0xFF" + marker.toString(16));
+    }
+    if (marker === 0xd9) fail("EOI reached before SOS");
+    if (marker === 0xd8) fail("second SOI before SOS");
+    if (marker === 0xda) {
+      // SOS: entropy data follows the segment header.
+      if (sawSos) fail("duplicate SOS");
+      sawSos = true;
+      const segLen: number = (buf[pos + 2] << 8) | buf[pos + 3];
+      if (segLen < 2) fail("SOS segment length < 2");
+      let i: number = pos + 2 + segLen;
+      let sawEoiInScan: boolean = false;
+      // Scan the entropy data with proper marker rules: 0xFF00 is a
+      // stuffed byte, 0xFFD0-0xFFD7 are restart markers, 0xFFD9 ends it.
+      while (i + 1 < buf.length) {
+        if (buf[i] !== 0xff) {
+          i++;
+          continue;
+        }
+        const code: number = buf[i + 1];
+        if (code === 0xff) {
+          // 0xFF fill (padding) byte inside scan data: advance by 1 so
+          // the next 0xFF is re-examined as a possible marker prefix. A
+          // fill byte must be followed by a real marker, never by a
+          // stuffed 0x00 byte (0xFF 0xFF 0x00 is malformed).
+          if (i + 2 >= buf.length) fail("truncated fill byte in scan data");
+          if (buf[i + 2] === 0x00) fail("0xFF00 after fill byte in scan data");
+          i += 1;
+          continue;
+        }
+        if (code === 0x00) {
+          i += 2;
+          continue;
+        }
+        if (code >= 0xd0 && code <= 0xd7) {
+          i += 2;
+          continue;
+        }
+        if (code === 0xd9) {
+          if (i + 2 !== buf.length) fail("EOI not at end of file");
+          sawEoiInScan = true;
+          break;
+        }
+        if (code === 0xd8) fail("second SOI inside scan data");
+        fail("unexpected marker 0xFF" + code.toString(16) + " in scan data");
+      }
+      if (!sawEoiInScan) fail("EOI not found in entropy data");
       break;
     }
-    if (isStandalone(marker)) continue;
-    // Every other marker carries a 2-byte big-endian length that includes
-    // the two length bytes themselves.
-    if (pos + 2 > buf.length) fail("truncated length at offset " + pos);
-    const length = buf.readUInt16BE(pos);
-    if (length < 2) fail("bad segment length " + length + " at offset " + pos);
-    if (pos + length > buf.length) {
+    // RST (0xFFD0-0xFFD7) and TEM (0xFF01) occur only inside entropy-coded
+    // scan data, never in the marker stream before SOS.
+    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
+      fail("standalone marker 0xFF" + marker.toString(16) + " before SOS");
+    }
+    const segLen: number = (buf[pos + 2] << 8) | buf[pos + 3];
+    if (segLen < 2) fail("segment length < 2 at offset " + pos);
+    if (pos + 2 + segLen > buf.length) {
       fail("segment overruns file at offset " + pos);
     }
-    if (isSof(marker)) {
-      sofCount++;
-      // SOF layout: length(2) precision(1) height(2) width(2) count(1)
-      // then 3 bytes per component, so length must be 8 + 3 * count.
-      if (length < 11) fail("short SOF segment at offset " + pos);
-      const components = buf[pos + 7];
-      if (components < 1 || components > 4) {
-        fail("bad component count " + components + " at offset " + pos);
+    if (marker === 0xc0) {
+      // SOF0: precision (1), height (2), width (2), components (1).
+      if (segLen < 11) fail("SOF0 segment too short");
+      const precision: number = buf[pos + 4];
+      const h: number = (buf[pos + 5] << 8) | buf[pos + 6];
+      const w: number = (buf[pos + 7] << 8) | buf[pos + 8];
+      if (precision !== 8) fail("SOF0 precision " + precision + " != 8");
+      if (h !== 1024 || w !== 1024) {
+        fail("SOF0 dimensions " + w + "x" + h + " != 1024x1024");
       }
-      if (length !== 8 + 3 * components) {
-        fail("SOF length " + length + " mismatches " + components + " components");
-      }
-      height = buf.readUInt16BE(pos + 3);
-      width = buf.readUInt16BE(pos + 5);
-      if (width < 1 || height < 1) fail("zero image dimension");
-      if (width > MAX_DIM || height > MAX_DIM) {
-        fail("image is " + width + "x" + height + ", over 1024x1024");
-      }
+      if (sawSof0) fail("duplicate SOF0");
+      sawSof0 = true;
     }
-    if (marker === 0xda) {
-      // Start of scan: entropy data runs until the next real marker.
-      // 0xff 0x00 is a stuffed byte, 0xff 0xd0..0xd7 are restart markers;
-      // anything else after 0xff ends the scan.
-      let scan = pos + length;
-      let found = -1;
-      while (scan + 1 < buf.length) {
-        if (buf[scan] !== 0xff) {
-          scan++;
-          continue;
-        }
-        const next = buf[scan + 1];
-        if (next === 0x00 || (next >= 0xd0 && next <= 0xd7)) {
-          scan += 2;
-          continue;
-        }
-        if (next === 0xff) {
-          scan++;
-          continue;
-        }
-        found = scan;
-        break;
-      }
-      if (found < 0) fail("no marker after scan data");
-      pos = found;
-      continue;
-    }
-    pos += length;
+    pos += 2 + segLen;
   }
-
-  if (soiCount !== 1) fail("found " + soiCount + " SOI markers");
-  if (eoiCount !== 1) fail("found " + eoiCount + " EOI markers");
-  if (sofCount !== 1) fail("found " + sofCount + " SOF markers");
-  if (width < 1 || height < 1) fail("no image dimensions found");
-  return [width, height];
+  if (!sawSof0) fail("no SOF0 segment found");
+  if (!sawSos) fail("no SOS segment found");
 }
 
-function main(): void {
-  const here = dirname(fileURLToPath(import.meta.url));
-  const source = join(here, "entry.png");
-  let buf: Buffer;
-  try {
-    buf = readFileSync(source);
-  } catch (err) {
-    const code = (err as NodeJS.ErrnoException).code ?? "unknown";
-    fail("cannot read entry.png (" + code + ")");
-  }
-  const [width, height] = validateJpeg(buf);
-  const outDir = process.env.MAKEFUN_OUTPUT_DIR;
-  if (!outDir) fail("MAKEFUN_OUTPUT_DIR is not set");
-  mkdirSync(outDir, { recursive: true });
-  const target = join(outDir, "entry.png");
-  writeFileSync(target, buf);
-  console.log(
-    "wrote entry.png (" + buf.length + " bytes, " + width + "x" + height + ")",
-  );
-}
+validateJpeg(JPEG);
 
-main();
+const outDir: string = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+mkdirSync(outDir, { recursive: true });
+const outPath: string = join(outDir, "entry.png");
+writeFileSync(outPath, JPEG);
+const sha: string = createHash("sha256").update(JPEG).digest("hex");
+console.log("wrote " + outPath + " (" + JPEG.length + " bytes, sha256 " + sha + ")");

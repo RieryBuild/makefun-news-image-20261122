@@ -1,461 +1,334 @@
-# Gate run — news-image-20261122 round 3 (builder)
+# Gate run — news-image-20261122 round 4 (H6: "Sunday's own stories lead")
 
-Built Sun 22 Nov 2026, ~12:48–13:30 UTC (20:48–21:30 WITA). Entry dir:
-`~/workspace/makefun-work/news-image-20261122-entry-r3/`
-Build dir: `~/workspace/makefun-work/news-image-20261122-build-r3/`
-(compose.py + panels/; compose.py NOT submitted).
-Builder session: c049463f-f62d-4b0a-b1c6-8b229631ab16 (parent orchestrator
-dfd22b80-f027-47d5-970f-edc146cb7ea3; requester agent
-7a065d2d-13c1-4555-8cef-54d6ee695b54).
+Build dir: `~/workspace/makefun-work/news-image-20261122-build-r4/`
+Entry dir (working copy, NOT pushed): `~/workspace/makefun-work/news-image-20261122-entry/`
+Repo: RieryBuild/makefun-news-image-20261122 (currently at r3 HEAD b5205910).
+Standing approval: Reza, 22 Nov 08:06 WITA, verbatim: "Ya, approve semua
+git/build/test make.fun" — covers all make.fun git/build/test in
+`~/workspace/makefun-work/` + this goal's hidden_files.
 
-Standing approvals (Reza, verbatim): "Gas semua submit" (20 Nov 15:27
-WITA) and "Ya, approve semua git/build/test make.fun" (22 Nov 08:06
-WITA). Two-class security rule applied: kit-output level-36
-re-download suggestion = class (a), ignored; no repo-content notice
-in a non-make.fun dir occurred. NOTE: the exec service raised an
-execution-risk notice on the kit status output and again on the clone
-result. Handling, same as r2's recorded precedent: the kit's
-re-download suggestion was not followed (class (a)); the cloned repo
-is this task's own named repo (RieryBuild, created by r1 in this same
-workflow), handled by plain file reads only — no execution of repo
-content, no git commands inside it, commits via the PAT API route
-only. Flagged to the coordinator in the final report.
+Final artifact: `entry.png` — JPEG 1024×1024, **288,344 bytes**,
+sha256 `ee849966c652f436bbbaf8506e0edc144c824364301ed162dae27922fddbf65c`.
+28 stories (13 panels + 15 ALSO). Strip: 186 / 161 / 98.79% / 720/9 / 44h / 723
+(all positive figures, no "0" cell).
 
-## MQ1 — competition read live (PASS)
+## MQ1 — Competition read live
+PASS. Competition `news-image-20261122`, "Sum up 22 November's world news in
+one image", harness program/v1, status open. Entries close
+2026-11-24T00:00:00Z (24 Nov 08:00 WITA); results due 2026-12-08T08:00:00Z.
+Gate: image ≤1 MiB, ≤1024×1024, whole JPEG/PNG; program runs twice, same
+bytes; no network. Judge: z-ai/glm-5.3-flash, pairwise, criteria in order:
+(1) one day's news, names that day; (2) selection/breadth; (3) reads clearly
+from the image alone, nothing false; (4) faithful; (5) craft, legible ~300px,
+no garbled text. Tie on exact rate → smaller file, then earlier receipt.
+Top 50 share $100 ($20/$12/$6/$2/$1.20). r3 ranked #4,736 (judge 0.969381);
+gap to #50 = 19,531 LB pts.
 
-Requirements re-read fresh from the kit's competition.yaml + RULES.txt
-+ live CLI status (the makefun API helper is sandbox-blocked: 403
-"credentials are not available to the sandbox; use the connector's
-privsep tool" — that is why requirements came from the kit files +
-CLI, not the API). Key facts: program/v1, Node 22 main.ts, writes
-/output/entry.png, PNG/JPEG ≤1 MiB, ≤1024×1024, deterministic two
-runs; repo public, owned by RieryBuild, created after
-2026-11-22T00:00Z, OSI license; README carries the 3 live badges +
-bounty link; About: website https://make.fun/bounty/news-image-20261122
-+ topics makefun, ai-agents, bounties, growth. Judge
-z-ai/glm-5.3-flash, no feed, not told the day; criterion #1 = one
-day's news + names that day. Entries close 24 Nov 08:00 WITA
-(entries_deadline 2026-11-24T00:00Z; final phase ends 2026-11-24
-08:00 UTC per competition.yaml). Quota re-verified at gate time via
-kit CLI status, 22 Nov 13:13 UTC: can_submit YES, 2 made, day 4 left
-(of 6), hard 38 left (of 40). Escrow funded $100 (1st $20, 2nd $12,
-3rd $6, 4–10 $2, 11–50 $1.20). Authorship: thinking_reproduces
-min_authored 0.3, max_unwritten_share 0.4, entrypoints main.ts/main.py;
-thinking_revised min_file_writes 2; thinking_turns min 5 assistant
-turns; thinking_own_work required_from 2026-11-20.
-Kit: level 34 (site now level 36 — class (a) note, ignored, do NOT
-re-download). System prompt file:
-~/workspace/makefun-work/news-image-20261119-system-prompt.md.
-Recorder: `makefun record` attempted FIRST (12:48 UTC) — HTTP 400 as
-in r1/r2 ("does not take recorded transcripts: its entries upload
-their transcripts (a bundle or loose files) as the requirements
-say"). Logged in entry dir recorder.log. Live-session bundle route
-used instead. Bundle --dry-run attempted twice early: (1) failed
-only because the --muse-usage file did not exist yet; (2) failed
-"entry dir is not inside a git repository" — entry dir is not a clone
-yet. Both deferred to the bundle step after the repo state exists;
-see MQ7.
+## MQ2 — Entry shape
+PASS. Repo root carries `main.ts` (Node 22, stdlib only), `entry.png`,
+`NEWS.md`, `gate-run.md`, `LICENSE` (already in repo), `package.json`
+(`"type": "module"`, `"main": "main.ts"` — already in repo, untouched).
+`main.ts` reads `./entry.png` (the image the repository holds — the kit's own
+documented simplest program), validates the JPEG structure, writes the same
+bytes to `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output/entry.png`).
+No network, no dependencies. `README.md` left as-is per coordinator decision
+from r3. Nothing pushed; coordinator handles the PAT commit.
 
-## MQ2 — entry shape (PASS)
+## MQ3 — Determinism
+PASS (2× byte-identical, both stages).
+- `compose.py`: ran twice → identical sha256
+  `ee849966c652f436bbbaf8506e0edc144c824364301ed162dae27922fddbf65c`.
+  Fixed fonts (DejaVu), fixed layout, no timestamps/randomness in the image
+  (only the static "Wires read up to 07:00 UTC" line), LANCZOS resize.
+- `main.ts`: ran twice (different output dirs, and once from another cwd) →
+  identical bytes, same sha256 as `entry.png`.
+- Note: `main.ts` was rewritten from the embed architecture to the copy
+  architecture during the Gate 3 audit (see Gate 3); the JPEG validator logic
+  is unchanged from the Gate-1-reviewed version, and determinism was
+  re-verified after the rewrite.
 
-Entry tree (repo root after push): LICENSE (MIT,
-SPDX-License-Identifier line 1, kept as-is from the repo), NEWS.md
-(fact record, 37 stories), README.md (3 live badges, description,
-Run it — kept as-is from the repo; see the README flag in NEWS.md),
-entry.png (JPEG bytes, 1024×1024, 397,435 bytes, sha256
-e74cb086d24356f2d02d60828760bb119549d0fa5bbc5980ebe9e86870a75327),
-main.ts (Node 22, stdlib only, written fresh in-session + revised
-twice in-session — rev 1: SOF hardening; rev 2: readFileSync wrapped
-in try/catch → clean "cannot read entry.png (CODE)" rejection),
-package.json (kept as-is from the repo; already has "type": "module"),
-gate-run.md (this file).
-main.ts validates JPEG SOI/EOI + SOF dimensions + ≤1 MiB and copies
-entry.png byte-for-byte to $MAKEFUN_OUTPUT_DIR. No network, no writes
-into the repo, never removes the output dir. Negative tests (all exit
-1, clean messages, re-run 22 Nov ~13:25 UTC on node22 v22.21.0):
-truncated file ("missing EOI marker at end of file"), PNG file
-("missing SOI marker"), trailing garbage after EOI ("missing EOI
-marker at end of file"), missing entry.png ("cannot read entry.png
-(ENOENT)"), missing MAKEFUN_OUTPUT_DIR ("MAKEFUN_OUTPUT_DIR is not
-set"), SOF truncated inside its header ("missing EOI marker at end
-of file"). The MODULE_TYPELESS_PACKAGE_JSON warning seen in local
-runs is absent in the repo: the repo's package.json already carries
-"type": "module".
+## MQ4 — Size / format / legibility
+PASS.
+- Format: JPEG (SOI `FF D8` … EOI `FF D9`), 1024×1024, validated by
+  `main.ts` (segment walk, SOF0 8-bit 1024×1024, scan-data marker rules).
+- Size: 288,344 bytes — under the 300 KB target and well under the 1 MiB cap.
+  (Also a tie-break advantage: on an exact rate tie the smaller file wins.)
+- 300px legibility test: PASS — downscaled to 300×300, the masthead date
+  "SUNDAY 22 NOVEMBER 2026", the deck, all six strip figures and all three
+  hero headlines ("Iran claims two US radars hit", "Still burning on Sunday",
+  "The deal that died") read clearly, not borderline. Verified by viewing the
+  300px render and a 2× upscaled crop of its top band.
 
-## MQ3 — determinism (PASS)
+## MQ5 — Angle (H6)
+PASS. Heroes are Sunday's own stories: (1) BAHRAIN — first reported Sunday
+04:46 UTC, CLAIM vs DENIAL both stated; (2) SPARTA II — hit Saturday, still
+burning Sunday; (3) COP31 — no deal decided Sunday. Deck leads with the same
+three. Drones (186) and Hong Kong are panels, not heroes. This is a new
+hierarchy vs r3 ("The Day the Deal Died", 37 stories, COP31-led); no layout
+or copy was taken from r1–r3 (their files were never read for retyping).
 
-compose.py run twice: identical sha256
-e74cb086d24356f2d02d60828760bb119549d0fa5bbc5980ebe9e86870a75327.
-main.ts run twice (node22 v22.21.0) into two separate output dirs:
-byte-identical to entry.png each time (sha256 matches on all three
-copies). No timestamps, no randomness, no network in either program.
+## MQ6 — Facts / dates
+PASS. All 28 stories verified from primary sources with first-report dates
+in NEWS.md (Reuters/AP/AFP/UN News/UKMTO/USGS-adjacent NCS/info.gov.hk/
+ESPNcricinfo/FIA/ATP/Vatican News/IANS/MEA). Date discipline: day rule =
+happened OR first reported on Sunday 22 Nov 2026 in any timezone; never
+aggregator republication dates; never bloggersminds.com. 18 exclusions in the
+DATE CHECK footer (10 mandated + 8 verified extras: Qeshm MQ-9 claim,
+France–Myanmar, Ladakh polls, Nitish Setu, Arsenal/Leeds, Akvan flights,
+Pugh swim, Gaza aid-van strike). Borderline calls documented in NEWS.md:
+England 37–12 (Sat London, Sun NZ), Myanmar quake (21:05 UTC Sat, 03:35 Sun
+local), F1 (Sat night Vegas, Sun morning UTC), BBC gamer rescue (feature
+first published 22 Nov, rescue late Oct), Eisenkot mandate 7–8 Nov vs
+Sunday's condemnation + Likud talks. F1 time corrected to 1:27:39.624 (FIA;
+the brief's 1:37:39.624 is wrong). COP31 framed as first no-deal since
+Copenhagen 2009 (asiatoday + coordinator), not Hague 2000.
 
-## MQ4 — size / format / legibility (PASS)
+## MQ7 — Authorship / transcripts
+PASS (builder side; coordinator bundles at the end).
+- `compose.py` (438 lines) and `main.ts` (109 lines) written fresh in-session,
+  revised in-session across multiple assistant messages (compose.py: 2-chunk
+  write + overflow trims + 7 Gate 1 fixes; main.ts: fresh write + SOI patch +
+  payload re-injections + full rewrite to copy architecture). thinking_revised
+  (≥2 messages) satisfied for both files.
+- 13 panels generated in-session by the image model in flat illustration
+  style (files in `panels/`, one .webp per panel); no photorealistic AI
+  photos of real events; nothing code-drawn as a panel substitute.
+- r1–r3 `compose.py` / `main.ts` / `NEWS.md` / `entry.png` were NOT read for
+  retyping (task instruction); the entry dir's `package.json` was read only
+  to confirm `"type": "module"`.
+- `makefun record` NOT run (returns HTTP 400 for this competition);
+  transcripts upload as a bundle from live sessions; builder session files
+  kept intact, nothing deleted.
+- Authorship risk found and fixed in the Gate 3 audit: the first `main.ts`
+  embedded the JPEG as ~5,059 base64 lines produced by a script — those lines
+  appear nowhere in the transcripts, so they would count as unwritten lines
+  against the 30% authored share (thinking_reproduces). Rewrote `main.ts` to
+  the kit's documented copy pattern (read `./entry.png`, validate, write).
+  All counted lines are now agent-authored in-session.
 
-entry.png: JPEG magic FFD8, EOI FFD9 present, 1024×1024, 397,435
-bytes (≤1 MiB hard; <300 KB soft target missed — accepted, the hard
-cap is what the gate checks; r2 also missed the soft target).
-compose.py reported no OVERFLOW warnings; final layout fits the
-frame. 300 px downscale viewed: masthead date "Sunday 22 November
-2026" reads clearly; the 3 hero headlines and the 6-figure strip stay
-legible as headlines/figures; ALSO + DATE CHECK readable, no
-truncation or ellipsis anywhere. Full-size image viewed: layout
-clean, panels legible, timeline and region bar fit (both were fixed
-after the first render — see MQ8).
+## MQ8 — Self-critique
+Three measured cycles in-session:
+1. First render overflowed (final y=1108): trimmed panel bodies to ≤~155
+   chars, hero image 132→118, small image 62→48, map 132→118 → final y=1016.
+2. ALSO items wrapped to 2 lines and overlapped: shortened all 15 items to
+   ≤59 chars (single line each, verified visually); JPEG quality 88→80 →
+   360,422 B → 289,905 B (under the 300 KB target).
+3. Gate 1 fixes (see Gate 2): ALSO single-line assert, wrap() word-split
+   fallback, panel-loader exact-match assert, map 13 pins → 3 hero pins,
+   strip label "India declared", COP31 "annual" + trims, HK headline
+   "98.79% turnout", main.ts second-SOI check, copy architecture.
+   Final: 288,344 B, final y=1016, 300px PASS, determinism re-verified.
 
-## MQ5 — angle (PASS)
+## Gate 0 — Requirements
+PASS. Entry satisfies the competition.yaml gate: JPEG ≤1 MiB, 1024×1024,
+whole file (validated end marker), program runs twice with identical bytes,
+no network. 28 stories, all 22 Nov 2026 (any timezone). No provider API key
+or secret in the entry files. No entry fee (requirements `entry_fee` is null).
+Escrow funded (status in req file; coordinator verifies at submit).
 
-Pitch, 3 angles considered (epic-infographics step 3), picked BEFORE
-any build writes (build dir pitch.md):
-- A (CHOSEN): "The Day the Deal Died" — COP31 collapses (first COP
-  with NO deal since Copenhagen 2009) as lead, Gulf war + Hong Kong
-  record vote as co-heroes. Deck: "COP31 collapses without a deal ·
-  186 drones over Ukraine · Hong Kong votes in record numbers". The
-  freshest angle in the field: at build time (~13:00 UTC) the COP31
-  outcome had landed as a result, Hong Kong's final turnout (98.79%)
-  had superseded every mid-day figure, and the verified 186/161
-  drone count had superseded #5's 148.
-- B (rejected): "Verdicts Edition" — too close to r2's "Results
-  Edition" framing; no new spine.
-- C (rejected): "Two Wars, One Vote" — war-led, buries the COP31
-  collapse, the day's biggest outcome.
-Target 33–36 stories MET: 37 verified stories (13 panels + 24
-ALSO). Region counts sum to 37: Europe 10, Middle East 8,
-Asia-Pacific 9, Americas 4, Africa 2, Oceania 3, World 1.
+## Gate 1 — Local run + checks
+PASS.
+- `python3 compose.py` → rendered, final y=1016, no overflow, no overlap
+  (visually verified full-size + 300px + crops: Israel panel, map).
+- `node main.ts` ×2 (+ once from another cwd) → identical bytes, sha256
+  matches `entry.png`.
+- JPEG validated by `main.ts` on every run (SOI/EOI/SOF0/scan rules).
+- Panel audit: all 13 panels viewed (contact sheet + p01/p05 full-size) —
+  flat illustration, on-topic, no baked-in text, no photographs.
 
-### Story list (locked; every item verified against primary sources)
+## Gate 2 — Multi-model review (OpenRouter :free, $0)
+Two rounds. Round 1: nemotron-3-ultra-550b-a55b:free (text: compose.py +
+main.ts code + NEWS.md; 35,220 tokens) and nemotron-3.5-super-vl:free
+(image: entry.png; 7,561 tokens). Round 2 (re-review after fixes):
+nemotron-3-ultra (26,924 tokens) + nemotron-3.5-super-vl (8,280 tokens).
+Gemini: 503s did not clear → skipped, recorded GAP (not FAIL), same as r3.
 
-PANELS (13) — heroes H1–H3, then P4–P13 (full record in NEWS.md):
-- H1 COP31 · ANTALYA — "COP31 collapses with no deal at all".
-  Kurum: "no consensus... these decisions have not been adopted."
-  EU + others rejected the final draft; text omits fossil fuels
-  entirely; keeps 35%-by-2035 electricity share + gigatonne-scale
-  CCUS; drops $120bn/yr-by-2035 adaptation figure. First COP with no
-  deal since Copenhagen 2009. Sources: Reuters, BusinessDay (22 Nov).
-- H2 DRONES · KYIV — "Russia fires 186 drones; 161 downed".
-  Raid 18:00 Sat–08:00 Kyiv Sun; 161 of 186 downed incl. 56 of 72
-  jet-powered Shaheds; strikes at 18 sites; Dymer block destroyed,
-  14 unaccounted for. Sources: Ukrainian Air Force / General Staff,
-  Reuters wires (22 Nov). #5's "148 drones, 3 missiles" is wrong.
-- H3 HONG KONG — "Hong Kong elects its electors in record numbers".
-  Final turnout 98.79% (5,640 of 5,709), record vs 89.77% in 2021;
-  856 candidates, 723 seats, 31 subsectors; polls 09:00–18:00 HKT.
-  Sources: info.gov.hk, China Daily Asia (22 Nov). 44.7%/93.55%
-  were mid-day figures, superseded.
-- P4 BAHRAIN (CLAIM) — "Iran claims two US radars hit; Bahrain
-  denies it". IRGC claim late Sat night; Bahrain: defences
-  intercepted, debris light damage, no injuries; IRGC video Sun
-  morning; no US statement. Sources: Xinhua, ABNA, Al Jazeera
-  (22 Nov).
-- P5 SPARTA II — "Russian cargo ship Sparta II still burning".
-  Hit by 2 drones Sat, still ablaze Sun in Finnish waters; 16 crew
-  evacuated; sinking risk as firefighting water builds; Russian
-  helicopter suspected in Finnish airspace Sat 12:34, 4.1 km.
-  Sources: Reuters, Helsinki Times (22 Nov).
-- P6 CRICKET · WELLINGTON — "India pile up a record 720/9".
-  Highest Test total in NZ; Pant 128, Rahul 136, Gill 98; NZ 119/2
-  trail 233. Source: ESPNcricinfo (22 Nov).
-- P7 F1 · LAS VEGAS — "Verstappen takes the Las Vegas GP".
-  1:27:39.624; Norris +0.639, Piastri +1.529; 75th win. Sources:
-  Reuters, Formula1.com (22 Nov).
-- P8 GAZA — "Hamas seeks urgent talks after aid-van strike". Call
-  published 05:11 UTC Sun after Sat strike killed 3 aid workers;
-  3 more killed Sun. Source: Anadolu (22 Nov).
-- P9 NEPAL · DELHI — "Nepal's PM lands in Delhi on first visit".
-  Shah arrives 15:45, meets Jaishankar 18:00; Modi talks Mon.
-  Sources: IANS/ANI (22 Nov).
-- P10 POPE LEO · VATICAN — "Pope Leo lunches with 1,300 poor
-  guests". 10th World Day of the Poor; Angelus then lunch in Paul
-  VI Hall; prayed for war victims + drought-hit Papua New Guinea.
-  Sources: Vatican News (22 Nov).
-- P11 EL-FASHER · SUDAN — "MSF: El-Fasher's missing still
-  unaccounted for". Fate of hundreds of thousands unknown; ~5,000
-  of ~260,000 reached Tawila; 6 in 10 adults show starvation signs.
-  Source: MSF via Arab Press (22 Nov).
-- P12 SAUDI — "Saudi defences down a missile near Mecca". Houthi
-  ballistic missile intercepted ~01:42 Sun; Riyadh-bound drone
-  downed later Sun, 4th interception in 24h. Sources: SPA,
-  AzerNews (22 Nov).
-- P13 CHINA — "China hits back at the US carrier ban". Commerce
-  ministry "firmly opposes" FCC Thu vote barring China Mobile /
-  Telecom / Unicom from US phone numbers; warns countermeasures.
-  Source: Reuters (22 Nov).
+Round 1 text (verdict FAIL) — 7 findings, all adjudicated:
+1. MAJOR ALSO loop draws only lines[0] → REAL (latent). FIXED: assert
+   len(lines)==1 (fail loudly, not silently truncate).
+2. MAJOR map legend explains only pins 1–3 of 13 → REAL. FIXED: map now
+   shows only the 3 hero pins; legend complete.
+3. MINOR wrap() no over-long-word split → REAL edge case. FIXED: char-split
+   fallback added.
+4. MINOR panel loader "locale-dependent sort" → reviewer's premise wrong
+   (Python sorted() is code-point order, deterministic); hardening applied
+   anyway: assert exactly one match.
+5. NIT `d._image` private attr → REAL. FIXED: panel_block now takes the
+   canvas image explicitly (`img.paste`); the reviewer's suggested `draw.im`
+   was itself wrong — `ImageDraw.im` is the low-level core object, and using
+   it raised TypeError on first run (caught and fixed the same way).
+6. MINOR main.ts SOI standalone handling → partially real. FIXED: explicit
+   "second SOI before SOS" fail (EOI was already handled).
+7. NIT "India declare" → REAL. FIXED: "India declared in Wellington".
+8–9. VERIFIED: all 28 stories/dates correct; determinism confirmed.
 
-ALSO ON SUNDAY (24): ATP final (FORECAST) · Liverpool–Man Utd
-(FORECAST) · NFL Sunday (FORECAST) · Myanmar M4.1 · Philippines
-M4.5/M4.6 · Gaza toll 1,662–1,671 · Marles AUKUS · Kharg tankers ·
-Manipur toll 19 · Peru toll update (1 dead, 16 hurt, 853 displaced)
-· Bayelsa toll 24 · Cikande fire (3 dead, 36 missing) · Iran
-rationing (two-hour cuts) · Bitcoin $60,112 (01:00 UTC hour) ·
-Bangladesh arson bid 03:30 · IG Metall Mon strike · Estonia Narva
-queues · Melbourne 1956 (70 years) · Fukushima snow cut-off ·
-Venice Biennale closes · Black Nights Tallinn ends · Frieze Abu
-Dhabi closes · Oregon gamer rescue (BBC feature Sun) · Pugh Hormuz
-swim (AP first report Sun 04:31 UTC).
+Round 1 image (verdict FAIL) — 3 findings:
+1. MAJOR pin 2 "in the North Sea near the UK" → NOT REPRODUCED. Pin 2 is at
+   lon 24.0E / lat 60.0N = Gulf of Finland (correct). The real underlying
+   issue was the 13-pin Europe cluster overlapping — FIXED by hero-only pins.
+2. MINOR HK panel "98.79% turnout out" baked text → NOT REPRODUCED. The
+   p05 panel viewed full-size contains no text at all. (The headline "98.79%
+   turn out" was later reworded anyway — see round 2.)
+3. NIT footer dense → accepted as-is (8pt, legible; standard footer size).
 
-DATE CHECK footer (on image; fuller list in NEWS.md): excludes
-400-drone barrage (19–20 Nov), Peru quake itself (Fri; toll update
-only), 'El Chapo Isidro' (Fri), EU–Indonesia deal (Sat), BepiColombo
-(Sat), Basra fire (Sat), Bayelsa boat (Fri; toll only), Gaza aid-van
-strike (Sat; talks call is Sunday's), ICJ Myanmar ruling (Thu 19
-Nov), Nvidia SEC probe + FBI hack (Fri 20 Nov), Ladakh polls (Sat),
-Bolsonaro ICU (Sat). Bahrain: late Sat, claim/account reached wires
-early Sun, fresh updates Sun morning. Sparta II: hit Sat, still
-burning Sun. "Wires read up to 13:00 UTC, Sunday 22 November 2026."
+Round 2 text (verdict PASS WITH MINOR FIXES) — 5 findings:
+1. MINOR wrap single-char edge → theoretical only, reviewer itself: "cannot
+   happen in practice, risk negligible". No change.
+2. MINOR loader assert crash message → assert message is already explicit
+   ("panel %s: %d matches"); reviewer: "keep the assert (acceptable)". No change.
+3. MINOR ALSO assert fragility → the assert is the intended fail-loud
+   behaviour for fixed content. No change.
+4. NIT COP31 missing "annual" → REAL. FIXED: "dropped a $120bn annual
+   adaptation target" (with two trims to hold the 6-line body; final y
+   still 1016).
+5. NIT Israel party names → reviewer: "current phrasing is not wrong".
+   No change.
+6–8. VERIFIED: facts/dates, JPEG validation, determinism.
 
-## MQ6 — facts / dates (PASS)
+Round 2 image (verdict FAIL) — 4 findings, all checked directly:
+1. MAJOR "Eisenkot condemns asron" → NOT REPRODUCED. Full-resolution crop
+   of the rendered panel reads "Eisenkot condemns arson". Model OCR error.
+2. MAJOR Israel panel "photograph of a military vehicle" → NOT
+   REPRODUCED. The panel is a flat illustration of a hillside village with
+   soldiers and smoke (viewed in the contact sheet and the crop). Model
+   hallucination.
+3. MAJOR pin 2 "North Sea/UK" again → NOT REPRODUCED (same as round 1).
+   Map crop shows pin 2 north of pin 3 (Antalya), at the Gulf of Finland
+   coordinates; pin 1 sits in the Gulf, pin 3 on Turkey's south coast.
+4. MINOR HK headline "98.79% turnout out" again → the headline was
+   "98.79% turn out"; the model merged "turn"+"out" and flagged the trailing
+   "out". Real ambiguity, cheap fix: FIXED → headline is now "98.79% turnout".
 
-Every story verified live against primary sources on 22 Nov; full
-record in NEWS.md. Corrections vs the current top-5, all with
-primary-source evidence in NEWS.md: drones 186/161 (not #5's 148);
-Hong Kong final 98.79% (not mid-day 44.7%/93.55%); Peru toll 1 dead
-(not #1's 16 dead); Manipur 19 (Xinhua's same-day 16 is the earlier
-figure); Bayelsa 24 Reuters (local reports say 26, noted).
-Excluded after verification (in NEWS.md, not on image): Ladakh
-70.03% (Sat polling + turnout), ICJ Myanmar ruling (Thu 19 Nov),
-Nvidia SEC probe + FBI NCIC hack (Fri 20 Nov), Bolsonaro ICU (Sat),
-Belgium Monday flight shutdown (announced Sat), Sudan Kordofan
-"30 towns" (announced Fri), AI chips 900k disclosure (Thu) +
-Schumer (Fri), Trump "permanent Iran deal" (Fox, Sat), Kharkiv
-Solonytsivka 11 hurt (reported Sat 07:57 UTC), Qeshm MQ-9/MQ-1
-downing claims (Sat — context for Bahrain only), Kharg convoy
-"ready to sail" (unconfirmed; trackers: none sailed).
-No dated claim in the image was left unverified. Two "first
-reported" inclusions are flagged in NEWS.md with original dates:
-Pugh swim (swam Mon–Wed, AP first report Sun 04:31 UTC) and the
-teen-gamer rescue (rescue 1 Nov, BBC feature published Sun).
+No Gate 1 finding remains unadjudicated. The two image FAIL verdicts rest
+entirely on model misreads that direct visual inspection refutes; the one
+real item they raised (HK headline wording) was fixed and re-rendered.
+No third full re-review was run: the VL reviewer repeated the same two
+misreads across both rounds despite the fixes, so a third pass would add
+noise, not signal; adjudication rests on direct crops instead.
 
-## MQ7 — authorship / transcripts (PARTIAL — bundle is the coordinator step)
+## Gate 3 — Literal gate-row audit (req file, 56 checks)
+Audited against `req-news-image-20261122-r4-fresh.json` (56 checks).
+Builder-relevant rows:
+- competition_open / quota / form / entry_signature / repo_owner /
+  repo_public / license_osi / repo_created_after_open / commit_in_repo:
+  COORDINATOR scope (submit-time; repo is public, LICENSE present,
+  created after open, coordinator holds the PAT commit + 6do8 wallet).
+  Builder verified the repo is the r3 working copy at HEAD b5205910 and did
+  NOT push.
+- duplicate_snapshot: PASS — all files are new in-session work (H6
+  hierarchy, new panels, fresh code); entry.png bytes differ from r3.
+- entry_size: PASS — entry.png 288,344 B ≤ 1 MiB; main.ts 4,105 B;
+  tree well under any cap (kit caps are per-file/tree; largest file is the
+  288 KB image).
+- committed_provider_key / committed_secret: PASS — no keys or secrets in
+  any entry file (grep-verified by construction: only code + image + docs).
+- security_audit: PASS — stdlib only, no network, no shell, no eval, no
+  dynamic code; reads one local file, writes one local file.
+- transcripts_present / recorded / wellformed / in_window / committed /
+  reproduces / turns / priced / revised / fresh / own_work:
+  COORDINATOR scope at bundle time, but builder-side evidence: session
+  started after the competition opened (23 Nov, in-window); compose.py +
+  main.ts + NEWS.md all authored in-session across ≥5 assistant messages
+  with writes/edits (thinking_revised ✓); ≥30% authored share achievable
+  because every counted line is agent-written (the embed-architecture risk
+  was caught and fixed — see MQ7); panels generated in-session, not
+  downloaded; no r1–r3 files read or copied (thinking_own_work ✓).
+- run_completes / run_deterministic: PASS — main.ts runs in <1 s, twice,
+  byte-identical, no network, stdlib only (Node 24 tested; kit runs Node 22
+  with type-stripping for erasable TS — main.ts uses only erasable syntax).
+- hindsight_clean / distinct_entrant / model_call / dev_profitable /
+  practice_floor / contender / finalist_review / disqualified / claim_*: not
+  applicable at build time (grading/claim phases; coordinator + submitter).
+- strict_transcripts: not present in the req file's escrow block (no
+  strict_transcripts key) — the task's "verify strict_transcripts" item is
+  therefore N/A for this competition; transcripts upload as a bundle from
+  live sessions per the task brief (recorder N/A, HTTP 400).
 
-RECORDER DOES NOT APPLY to this competition (HTTP 400, 12:48 UTC —
-see MQ1). No recorder, no seal. Transcripts go up as a kit bundle
-built from this live Muse session (coordinator step).
-Authorship: main.ts, compose.py, NEWS.md, gate-run.md all written
-fresh in-session with the write/edit tools; the 13 panels generated
-in-session with the image-generation tool (flat illustration style,
-no photorealistic AI photos of real events, no code-drawn panels).
-Nothing copied from r2: compose.py and main.ts written fresh from
-spec; r2's compose.py/main.ts never read. r2's NEWS.md read for the
-story inventory only; r2's gate-run.md read for the gate structure
-only. main.ts revised twice in-session (rev 1 SOF hardening, rev 2
-read-error handling) — thinking_revised satisfied.
-USAGE FILE GAP (recorded, not fabricated): muse.db
-agent.agent_message_token_usage queried twice for this session's
-agent_id c049463f-f62d-4b0a-b1c6-8b229631ab16 (~13:00 UTC and ~13:20
-UTC, incl. the kit help's prescribed JOIN query with agent.agents
-for the model) — 0 rows both times. The table itself is live
-(17,995 rows; latest created_at 1795353375 ≈ 13:16 UTC) and the
-agent record exists (kind subagent, model ipnext/avocado-5.17-v7,
-parent 7a065d2d-13c1-4555-8cef-54d6ee695b54). No --muse-usage file
-was created — rows cannot be invented. Kit help says: "if bundle
-reports 0 usage rows attached, end this turn, and in your next turn
-run step 1 again and bundle again." The coordinator runs bundle
-from the top-level agent once subagents finish; if it reports 0
-usage rows, retry in a later turn per that instruction.
-Bundle --dry-run: entry dir was git-init'd in-session (git init +
-remote add origin only, no fetch, no commits) so --repo resolves;
-dry-run ran 22 Nov ~13:27 UTC (192 s, exit 0, "dry run: nothing
-written") with --system-prompt (proven file) and the harness facts.
-Result: my session file WAS found and included —
-/home/hatch/agents/agent-c049463f-f62d-4b0a-b1c6-8b229631ab16/sessions/
-c049463f-f62d-4b0a-b1c6-8b229631ab16.jsonl — among 18 Muse app
-sessions; ~40 pre-open (21 Nov) sessions that had touched memory
-files were correctly LEFT OUT (thinking_in_window). Two warnings
-for the coordinator's real bundle run: (a) 0 usage rows attached —
-a subagent's row is written only once its run completes, so the
-coordinator (top-level agent 2e581ced-d8af-4f9c-8880-78bdc2191516,
-whose session was NOT in this dry-run bundle) must re-run the
-prescribed SELECT with its own agent_id + each subagent's after
-this report is delivered, then bundle with --muse-usage; (b) the
-entry dir shows "uncommitted changes (recorded as repo.dirty)" —
-the local git init has no commits; the submitted state is the
-pushed remote HEAD f4b5c937 (clean), so bundle from a fresh
-checkout of that HEAD, or accept repo.dirty.
+## Fix record — Gate 1 re-review, fix builder (23 Nov ~16:00–17:00 WITA)
 
-## MQ8 — self-critique (PASS)
+Standing approval (Reza, 22 Nov 08:06 WITA, verbatim): "Ya, approve semua
+git/build/test make.fun".
 
-Cycle 1 (after first render): timeline strip cut off at the right
-edge + region bar cut off at "WORLD 1" → fixed (timeline shortened
-to fit; region bar changed to colour segments + one centred counts
-line), re-rendered, sha changed to e74cb086d24356f2d02d60828760b
-b119549d0fa5bbc5980ebe9e86870a75327.
-Cycle 2 (after the fix): full image + 300 px + top/bottom crops
-viewed; no new material weakness found.
-Cycle 3 (Gate 1 review attempt + self-audit): external reviewers
-unavailable (see Gate 2); I re-audited main.ts line by line against
-the actual file on disk and re-ran the full negative-test battery
-(6 tests, all exit 1 with clean messages). One hypothesised defect
-(a truncated-SOF NaN-dimensions hole) was checked against the real
-code and does NOT exist in this version — the segment-overrun check
-+ `length < 11` guard close it before any SOF field is read, and
-the SOF-truncation negative test confirms rejection. No real defect
-found; no fix needed. Full cycle with no material weakness → stop.
+The coordinator's independent OpenRouter review (nemotron-3-ultra-550b-a55b:free)
+of the r4 entry returned FAIL. Its 8 fact findings were all adjudicated
+INVALID by the coordinator (the model judged 22 Nov 2026 events against a
+2024 knowledge cutoff; every fact verified from primary sources). The 6 code
+findings were REAL and were patched in `main.ts` (in-session edits only;
+`entry.png` untouched, still 288,344 B, sha
+`ee849966c652f436bbbaf8506e0edc144c824364301ed162dae27922fddbf65c`):
 
-## Gate 0 — requirements (PASS)
+1. File-size check: `if (buf.length > 1024 * 1024) fail("file exceeds 1 MiB");`
+   at the top of `validateJpeg`.
+2. Entropy-data scan: 0xFF fill byte — when the next byte is also 0xFF,
+   advance `i` by 1 (re-examine the next byte) instead of failing
+   "unexpected marker".
+3. Marker-padding skip loop bounded: `while (marker === 0xff && pos + 1 <
+   buf.length)`.
+4. Bounds re-verified after the padding skip: `if (pos + 3 >= buf.length)
+   fail("truncated segment header");` before reading the segment length.
+5. Duplicate SOF0: `if (sawSof0) fail("duplicate SOF0");` in the 0xC0 block.
+6. Duplicate SOS: `if (sawSos) fail("duplicate SOS");` in the 0xDA block.
 
-All applicable checks read from competition.yaml + RULES.txt; the
-entry satisfies them (see Gate 3 audit). Non-applicable: patch_entry,
-entry_link, entry_pictures, ad_page, guide_page, source_bundle,
-thinking_launch, thinking_fresh, hindsight_clean, dev_profitable,
-practice_floor, contender, finalist_review (no such staging on this
-bounty), model_call (program/v1, no model gateway).
-Practice grade: `makefun grade-local` does NOT apply to program/v1 —
-"its scorer and reference data are not published in the kit, so the
-house grades it from its competition directory". No practice grade
-measured for r3. r2's kit provisional (0.985464) vs LB (977,798)
-gap is on record: never promise a rank from any kit rate.
+Determinism re-verified after the 6 fixes (Node 22.21.0): `main.ts` run
+twice into fresh dirs + once from another cwd — all three outputs
+byte-identical, sha256 `ee849966c652f436bbbaf8506e0edc144c824364301ed162dae27922fddbf65c`
+(matching `entry.png`).
 
-## Gate 1 — local run + checks (PASS, with review gaps recorded)
+Re-review #1 (same model, prompt `r4-review-prompt-fix.txt`, reply
+`r4-review-fix.json`, 11,929 tokens, $0): verdict FAIL, 16 findings.
+3 code findings REAL, fixed in-session:
+- (a) RST/TEM accepted as standalone markers before SOS → now
+  `fail("standalone marker 0xFF… before SOS")`.
+- (b) 0xFF00 not rejected in the marker stream → now
+  `fail("0xFF00 stuffing byte in marker stream")`.
+- (c) Entropy scan could exit without seeing EOI (e.g. an SOS segment
+  length that jumps past the scan) → `sawEoiInScan` flag, fail if EOI
+  never seen in the scan.
+13 fact findings (claims 1–13) INVALID — same 2024-cutoff misreads as the
+first review (model reasons "as of 2024": no COP31, Pope Francis, Dahal as
+Nepal PM, etc.); all 13 claims were verified from primary sources by the
+coordinator. Determinism re-verified after these 3 fixes (2× + other cwd,
+all `ee849966…`).
 
-- main.ts ×2 runs (node22 v22.21.0), byte-identical outputs;
-  6 negative tests all exit 1 (see MQ2).
-- entry.png: JPEG, 1024×1024, 397,435 bytes, sha256
-  e74cb086d24356f2d02d60828760bb119549d0fa5bbc5980ebe9e86870a75327.
-- README: 3 live badges present, no {owner}/{repo} placeholders,
-  bounty link present (verified in file via PAT GET). LICENSE: MIT +
-  SPDX-License-Identifier on line 1 (verified via PAT tree: blob
-  20237cc4, 1,097 bytes). package.json: "type": "module" present
-  (verified via PAT GET).
-- No provider keys or secrets in any entry file (entry files contain
-  no credentials; the only secret-adjacent values in the build are
-  wallet addresses already public in the task brief).
-- Kit check (level-34 kit, --worktree, 13:20 UTC, on the full tree =
-  clone at HEAD 3fe983d5 + the 4 r3 files overlaid): 4 pass / 14 skip
-  / 1 fail / 5 at-submission. Passes: competition_open, snapshot
-  (7 files, 446,094 bytes), license_osi ("LICENSE declares
-  SPDX-License-Identifier: MIT, OSI-approved"), entrypoint (main.ts
-  → node22). The earlier entry-dir-only run (13:18 UTC) failed
-  license_osi only because the entry dir holds just the 4 changed
-  files — a worktree-layout artifact, resolved by the full-tree
-  re-run. FAIL transcripts_present is EXPECTED: the transcripts
-  bundle is the coordinator's step (live session). The 5
-  at-submission items (repo_public, repo_owner,
-  repo_created_after_open, commit_in_repo, duplicate_snapshot)
-  resolve at submit time: the repo IS public, created
-  2026-11-22T01:29:27Z (after 2026-11-22T00:00Z, per r2's verified
-  push record), and the new commit differs from r2 (new entry.png,
-  new main.ts, new NEWS.md, new gate-run.md).
-- The kit's level-36 note is class (a): ignored, NOT re-downloaded
-  (standing approval quoted in the header).
+Re-review #2 (same model, prompt `r4-review-prompt-fix2.txt`, reply
+`r4-review-fix2.json`, 18,990 tokens, $0): verdict FAIL, 6 findings.
+2 code findings REAL, fixed in-session (no third full re-review per the
+task's cap — adjudicated from direct inspection + negative tests instead):
+- (d) `0xFF 0xFF 0x00` in scan data was accepted (a gap introduced by fix
+  2's fill-byte handling) → fill byte now requires the following byte
+  not to be 0x00: `fail("0xFF00 after fill byte in scan data")`.
+- (e) Other SOF markers (0xC1, 0xC2, …) were silently skipped → now
+  `fail("unexpected SOF marker 0xFF…")` for any SOF other than SOF0
+  (0xC4 DHT / 0xC8 JPG / 0xCC DAC excluded, they are not SOF).
+4 fact findings (claims 8, 9, 10, 12) INVALID — repeats of the same
+2024-cutoff misreads already adjudicated in re-review #1 (Balendra Shah,
+Pope Leo XIV, Eisenkot/Yashar, Pochettino at United); coordinator-verified
+from primary sources.
 
-## Gate 2 — multi-model review (PENDING — both external reviewers rate-limited; self-audit done)
+Final `main.ts`: 5,748 bytes, sha256
+`53afdc6299a7d411e99465fd55eacecaaebc3f623c4067d8913a34501a673c63`.
+Determinism re-verified after the final 2 fixes (2× + other cwd, all
+`ee849966…`). Negative tests on mutated copies in /tmp (real code, real
+validator): `0xFF 0xFF 0x00` in scan data → rejected "0xFF00 after fill
+byte in scan data"; SOF1 → rejected "unexpected SOF marker 0xFFc1"; RST
+before SOS → rejected "standalone marker 0xFFd0 before SOS"; 0xFF00 in
+marker stream → rejected "0xFF00 stuffing byte in marker stream";
+unmutated control → accepted. No third full re-review run: the model's
+remaining FAILs rest entirely on the repeated 2024-cutoff fact misreads,
+already adjudicated, and the two new code items were fixed and verified by
+direct negative tests (same precedent as Gate 2's image FAILs).
 
-- OpenRouter :free: ATTEMPTED twice, 22 Nov ~13:12 UTC.
-  nvidia/nemotron-3-ultra-550b-a55b:free → HTTP 429; then
-  google/gemma-4-26b-a4b-it:free → HTTP 429, identical error:
-  "Rate limit exceeded: free-models-per-day. Add 10 credits to
-  unlock 1000 free model requests per day", X-RateLimit-Limit 50,
-  Remaining 0, Reset 1795392000000 (= 2026-11-23 00:00 UTC =
-  08:00 WITA 23 Nov). Account-wide daily free limit exhausted by
-  other builds today — NOT model-specific. Re-checking GET /models
-  earlier the same day confirmed 11 :free models listed (441 total).
-  The review prompt (code + 8 fact claims, ~7.5 KB) is saved at
-  /tmp/r3-review-prompt.txt for a re-run after the reset. NO
-  independent code review was obtained in-session.
-- Gemini text/copy: ATTEMPTED twice. gemini-2.5-flash → HTTP 404
-  ("no longer available to new users... use gemini-3.8-flash").
-  gemini-3.8-flash → first attempt read-timeout at ~181 s (no
-  content returned); second attempt (shorter code-only prompt,
-  300 s timeout) → HTTP 503 "currently experiencing high demand".
-  Recorded gap, NOT a FAIL (per the standing rule: Gemini only if
-  its 503s cleared).
-- NEVER Xingchiapi / GPT-6.1-sol (standing rule — not attempted).
-- Self-audit (in place of the unavailable independent review):
-  main.ts re-read line by line + full negative-test battery re-run
-  (see MQ8 cycle 3); facts are the builder's own primary-source
-  verifications with the corrections vs top-5 documented in NEWS.md.
-  The coordinator MUST obtain an independent review (OpenRouter
-  :free after the 00:00 UTC reset, or equivalent) before submit —
-  the deadline (24 Nov 08:00 WITA) leaves ~24 h after the reset.
-  This gate is recorded PENDING, not PASS, so the entry is READY
-  FOR SUBMIT only once that review lands (or the coordinator
-  adjudicates the gap with its own review).
+Gemini: 503, skipped, recorded GAP (not FAIL), same as r3.
 
-## Gate 3 — literal gate-row audit (PASS, modulo Gate 2 pending)
-
-Audited against every named field in RULES.txt + requirements
-(competition.yaml) + kit checks, verified against actual files:
-- repo_url / commit_sha / bundle / transcripts / entry_message /
-  entry_signature: coordinator submits; bundle from the live
-  session with --system-prompt
-  (~/workspace/makefun-work/news-image-20261119-system-prompt.md)
-  and agent facts --harness Muse --harness-version 1 --provider
-  ipnext --model ipnext/avocado-5.17-v7 --effort default;
-  --muse-usage file NOT available (see MQ7 — 0 rows, do not
-  fabricate; retry per kit help).
-- repo public + owned by RieryBuild: verified via PAT API after
-  push — see Push record.
-- created after 2026-11-22T00:00Z: 2026-11-22T01:29:27Z (r2 push
-  record, verified via PAT API).
-- OSI license: MIT + SPDX-License-Identifier line 1 (PAT tree blob
-  20237cc4).
-- README badges (3 live, no placeholders, bounty link): verified
-  in file via PAT GET. README description still carries r2's text
-  ("COP31 goes to a Sunday vote", "24 verified stories") — left
-  untouched per the build brief (re-type trap); the coordinator's
-  literal audit decides whether the description needs updating
-  for r3 (flagged in NEWS.md).
-- About website + topics (makefun, ai-agents, bounties, growth):
-  verified via PAT API after push — see Push record.
-- entry.png PNG/JPEG ≤1 MiB, 1024×1024, whole file: verified
-  (397,435 bytes, sha e74cb086d2…, determinism ×2).
-- deterministic ×2 runs: compose.py and main.ts, verified.
-- no network in program: verified by reading main.ts (node:fs,
-  node:path, node:url only; no fetch/http).
-- no committed keys/secrets: verified (no credentials in entry
-  files).
-- no kit-starter lines re-typed: main.ts/compose.py written fresh
-  in-session; r2 files never read for re-typing.
-- story count 37 consistent in image masthead, NEWS.md, gate-run.md
-  (verified: 13 panels + 24 ALSO = 37; regions sum to 37).
-- DATE CHECK footer names 12 exclusions + 2 framing notes on
-  image; fuller list in NEWS.md.
-- transcripts via bundle from the live session (coordinator step);
-  system prompt file as above.
-- entry size caps: entry.png 397,435 bytes ≤ 1 MiB; snapshot
-  420,524 bytes within intake caps (kit check pass).
-
-## Verdict: READY FOR SUBMIT — CONDITIONAL on Gate 2
-
-Repo pushed + verified (see Push record below).
-- entry.png: 397,435 bytes, sha256
-  e74cb086d24356f2d02d60828760bb119549d0fa5bbc5980ebe9e86870a75327.
-- 37 stories (13 panels + 24 ALSO); determinism 2× byte-identical;
-  300 px legibility PASS; kit check on the full tree 4 pass / 1 fail
-  (transcripts_present = expected, coordinator bundles) / 14 skip /
-  5 at-submission.
-- Recorder: NOT APPLICABLE (HTTP 400, 12:48 UTC) — coordinator
-  bundles transcripts from the Muse session; DO NOT seal a recorder.
-- CONDITION: Gate 2 independent review is PENDING — OpenRouter
-  :free daily limit exhausted until 2026-11-23 00:00 UTC and Gemini
-  503ing. The coordinator must run the saved review prompt
-  (/tmp/r3-review-prompt.txt) against a :free model after the reset
-  (or its own equivalent review) and adjudicate any findings before
-  submit. The usage-file gap (MQ7) rides with the bundle step.
-
-## Push record (filled after push)
-
-- Commit A (r3, 4 PUTs, all status 200 first attempt, no retries):
-  entry.png 01fa6601167850bb5c2206184c023940535645a7 ("The Day the
-  Deal Died (37 stories)") → main.ts
-  d03e62d171585e71c5c6c44f39f2ad76864062d9 → NEWS.md
-  04a3641f572d5fb984bb83d20504f92bbc3657fd → gate-run.md
-  8b45a4b3fc0c2f744092783dc430b8d91db01c11 (HEAD after A). Parent
-  3fe983d54dff36126894b8d6b2cca1c87c3a7c3f (r2 HEAD).
-- Remote tree verified blob-for-blob (7/7 files; the 4 pushed blobs
-  match local `git hash-object` exactly; LICENSE/README/package.json
-  unchanged, same shas as before the push). About verified: public,
-  homepage https://make.fun/bounty/news-image-20261122, topics
-  makefun, ai-agents, bounties, growth, created 2026-11-22T01:29:27Z
-  (after 2026-11-22T00:00Z). Repo description updated via PAT PATCH
-  (status 200) to the r3 edition (37 stories, COP31 collapse) —
-  r2's "24 verified stories" text was stale for r3.
-- No RemoteDisconnected or retry occurred on this push; all 5 PAT
-  calls (4 PUTs + 1 PATCH) returned 200 on first attempt.
-- Kit check re-run on the full tree (clone at 3fe983d5 + 4 r3 files
-  overlaid, 13:20 UTC): 4 passed / 1 failed (transcripts_present,
-  expected) / 14 skipped / 5 at-submission.
-- Commit B (record): f4b5c93704ee44fe68ad5a2b796c4e1197b62e9c —
-  gate-run.md push verification. HEAD after B.
-- Commit C (record): <this commit> — gate-run.md bundle dry-run
-  record.
+## Verdict: READY FOR SUBMIT
+All gates pass. One recorded GAP (Gemini 503, skipped, not a fail) and three
+documented non-findings (VL model misreads, refuted by direct inspection).
+Fix-builder round (see Fix record above): the coordinator's Gate 1 text
+re-review FAIL rested on 8 adjudicated-INVALID fact findings plus 6 REAL
+code findings, all fixed in `main.ts`; two follow-up re-reviews surfaced 5
+further REAL code findings, all fixed and verified by determinism runs +
+negative tests; their remaining fact findings are repeats of the same
+2024-cutoff misreads, adjudicated INVALID from direct inspection.
+Coordinator next: verify, commit via PAT, bundle, submit with --keypair
+(wallet 6do8 only). Entries close 24 Nov 08:00 WITA; coordinator hard abort
+~07:00 WITA 24 Nov.
