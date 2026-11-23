@@ -426,3 +426,22 @@ COORDINATOR/PARENT scope at bundle time (parent bundles: original
 builder ff1a0c7c-9d54-4db4-ad0c-32548553cc29 + original coordinator
 baca7b0e-0440-424c-8c80-65fcab2fd15b + this fix coordinator
 33ccf631-7486-4e17-a615-3f4c455fd901; session files verified present).
+
+## Local kit check — fix round (bundle --dry-run, 24 Nov ~06:03 WITA)
+Kit: level-34 news-22 kit (cli/makefun.mjs). Repo: fresh clone at commit
+959cba9d (entry.png sha 016e7da0… verified in the clone). Sessions: the 3
+named above + parent 2e581ced auto-discovered via family (--no-family
+leaves it out; parent's text-bounty precedent is --no-family).
+Prompt-file + --prompt-origin other + --system-prompt supplied.
+RESULT: bundle assembles cleanly; NO new failures from the fix.
+Expected bundle-time items for the parent's bundle step (all resolve there):
+- 0 usage rows attached (thinking_priced) — parent runs the usage SELECT
+  and bundles with --muse-usage.
+- Run record: MCP servers (--mcp none) + agent facts (--provider,
+  --effort) to be declared by the parent.
+- Parent session: included by family discovery; parent decides --no-family
+  (their precedent) or include.
+Warnings only: builder session taken whole (worked in the build dir, not
+the repo — same as r1–r4); parent session's pre-opening records excluded
+by the kit (thinking_in_window safe); 57 outside dirs read, 32 searched.
+Dry run wrote nothing. Kit check: PASS.
